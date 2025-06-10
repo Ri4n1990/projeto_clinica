@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+
+:root{
+    --cor_principal:#4F76C9;    
+    --cor_secundaria:#91CDF5;
+    --cor_terciaria:#67DE7D;
+    --cor_base:#ffff;
+    --fonte_padrao: 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    
+    
+}
+
+body{
+    
+    margin: 0;
+    padding: 0;
+}
+
+
+
+#conteudo_principal{
+    display: flex;
+    flex-flow: row nowrap;
+    
+    width: 100vw;
+    height: 100vh;
+    
+    
+}
+
+#imagem_login{
+
+    width: 50%;
+    height: 100%;
+    
+
+
+}
+
+#login_cliente{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 100%;
+
+}
+
+#logo_clinica{
+
+    width: 35%;
+    
+
+
+}
+
+
+#login_cliente>form{
+    display: flex;
+    width: 36%;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-flow: column nowrap;
+    height: 40%;
+    
+}
+
+#login_cliente>form>div{
+    width: 100%;
+    height: 10%;
+    
+}
+
+form>div{
+    display: flex;
+    border: 3px solid var(--cor_principal);
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+    
+
+}
+
+.logo_input{
+    width: 15%;
+    height: 100%;
+    border-right: 2px solid var(--cor_principal) ;
+}
+
+.input_paciente{
+    
+    width: 85%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    text-align: left;
+    padding: 5px;
+    font-size: 1.3em;
+    font-family: "Inter", sans-serif;
+    
+}
+
+.input_paciente::placeholder{
+    font-size: 100%;
+}
+#visibilidade_senha{
+    background-image: url("../design/icone_visivel.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 15%;
+    height: 100%;
+    
+}
+
+#senha_paciente{
+    width: 70%;
+    
+}
+
+
+#icone_usuario{
+    background-image: url("../design/logo_input_usuario.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#icone_senha{
+    background-image: url("../design/icone_senha.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
