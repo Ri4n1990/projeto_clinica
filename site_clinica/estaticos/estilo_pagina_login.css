@@ -55,7 +55,7 @@ body{
 
 #logo_clinica{
 
-    width: 35%;
+    width: 45%;
     
 
 
@@ -64,7 +64,7 @@ body{
 
 #login_cliente>form{
     display: flex;
-    width: 36%;
+    width: 45%;
     align-items: center;
     justify-content: space-evenly;
     flex-flow: column nowrap;
@@ -78,13 +78,14 @@ body{
     
 }
 
-form>div{
+form>div:not(.btn){
     display: flex;
     border: 3px solid var(--cor_principal);
     border-radius: 10px;
     align-items: center;
     justify-content: space-around;
     padding: 5px;
+    
     
 
 }
@@ -140,4 +141,33 @@ form>div{
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+#login_cliente>form>div>button{
+    width: 80%;
+    height: 100%;
+    background-color: var(--cor_secundaria);
+    border: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    
+}
+
+.btn{
+    padding: 0;
+    display: flex;
+}
+
+.btn>i{
+    
+    width: 20%;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    background-image: url("../design/icone_login.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.199);
+    
+    
 }
