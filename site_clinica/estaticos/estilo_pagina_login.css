@@ -93,7 +93,13 @@ form>div:not(.btn){
     padding: 5px;
     
     
+    
 
+}
+
+form>button:hover{
+    background-color: var(--cor_principal);
+    cursor: pointer;
 }
 
 .logo_input{
@@ -120,7 +126,7 @@ form>div:not(.btn){
     font-size: 100%;
 }
 #visibilidade_senha{
-    background-image: url("../design/icone_visivel.png");
+    background-image: url("../design/icone_nao_visivel.png");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -129,9 +135,18 @@ form>div:not(.btn){
     
 }
 
+.senha_visivel{
+    background-image: url("../design/icone_visivel.png") !important;
+
+}
+
 #senha_paciente{
     width: 70%;
     
+}
+
+#senha_paciente::-ms-reveal{
+    display: none;
 }
 
 
