@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+
+:root{
+    --cor_principal:#4F76C9;
+    --cor_secundaria:#91CDF5;
+    --cor_terciaria:#67DE7D;
+    --cor_base:#ffff;
+    --fonte_padrao: "Inter", sans-serif;
+    --fonte_secundaria: "Instrument Sans", sans-serif;
+}
+
+
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+
+
+header{
+    display: flex;
+    width: 100vw;
+    background-color: #4F76C9;
+    justify-content: space-between;
+    height: 18vh;
+    
+    
+}
+
+
+header>img:not(#logo){
+    max-width: 15%;
+    height: 100%;
+    
+}
+
+
+
+
+#logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    width: 20%;
+    height: 80%;
+    align-self: center;
+    border-radius: 15px;
+}
+
+
+#logo>img{
+    width: 90%;
+    
+}
+
+form{
+    
+    width: 80vw;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+}

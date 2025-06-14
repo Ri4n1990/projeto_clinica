@@ -24,21 +24,29 @@
         <section id="login_cliente">
             <img src="../design/logo.png" alt="logo_clínica_gaúcha" id="logo_clinica">
 
-            <form action="#" id="formulario" autocomplete="off">
-                <div>
+            <form action="#" id="formulario" autocomplete="off" >
+
+                <div id="campo_cpf">
+
                     <div class="logo_input" id="icone_usuario"></div>
-                    <input type="text" name="cpf_paciente" id="cpf_paciente" class="input_paciente" placeholder="Insira seu CPF" minlength="14" maxlength="14">
-                </div>
+                    <input type="text" name="cpf_paciente" id="cpf_paciente" class="input_paciente" placeholder="Insira seu CPF" minlength="14" maxlength="14"   pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"  required >
 
-                <div>
+                </div>
+                
+
+                <div id="campo_senha">
+
                 <div class="logo_input" id="icone_senha"></div>
-                <input type="password" name="senha_paciente" id="senha_paciente" class="input_paciente" placeholder="Insira sua senha" maxlength="15">
+                
+                <input type="password" name="senha_paciente" id="senha_paciente" class="input_paciente" placeholder="Insira sua senha" minlength="8"        maxlength="15" required>
                 <i id="visibilidade_senha"></i>
+    
                 </div>
+                
 
                 
                 
-                    <button><span>Login</span><i id="icone_login"></i></button>
+                    <button id="btn_login" type="submit"><span>Login</span><i id="icone_login"></i></button>
                     
             
 
