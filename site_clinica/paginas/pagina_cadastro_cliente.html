@@ -24,13 +24,37 @@
     <form action="#">
 
         <div>
+            <label for="nome_paciente">Nome completo</label>
             <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" required>
         </div>
 
         <div>
-            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14">
+            <label for="cpf_paciente">CPF</label>
+            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" required>
         </div>
 
+        <div>
+            <label for="email_paciente">E-mail</label>
+            <input type='email' name="email_paciente" id="email_paciente"  maxlength="320" pattern="^\w{2,}@\w+\.\w+$">
+        </div>
+
+        <div>
+            <label for="senha_paciente">Senha de acesso</label>
+            <input type="password" name="senha_paciente" id="senha_paciente" minlength="8" maxlength="15">
+        </div>
+
+        <div>
+            <label for="telefone_paciente">Telefones para contato</label>
+            <input type="tel" name="telefone_paciente" id="telefone_paciente" pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$">
+            <input type="tel" name="telefone_paciente" id="telefone_paciente" pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$">
+        </div>
+        <div>
+            <input type="radio" name="sexo" id="masculino" value="masculino" >
+            <label for="masculino">Masculino</label>
+
+            <input type="radio" name="sexo" id="feminino" value="feminino" checked>
+            <label for="feminino">Feminino</label>
+        </div>
 
     </form>
     
