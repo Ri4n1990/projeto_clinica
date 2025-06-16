@@ -26,7 +26,13 @@ input_cpf.addEventListener('input',()=>{
 
 })
 
+icone_visibilidade.addEventListener('click',()=>{
 
+    icone_visibilidade.classList.toggle('senha_visivel')
+    input_senha.type = icone_visibilidade.classList.contains('senha_visivel') ? 'text' :'password'
+
+
+})
 
 
 btn_login.addEventListener('click',(evt)=>{
