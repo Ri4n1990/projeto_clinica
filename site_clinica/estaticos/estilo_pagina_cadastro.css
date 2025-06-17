@@ -23,6 +23,7 @@
 body{
     padding: 0;
     margin: 0;
+    
 }
 
 
@@ -67,9 +68,110 @@ header>img:not(#logo){
 
 form{
     
-    width: 80vw;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 60vw;
     margin: auto;
     margin-top: 20px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.12);
     border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+form>div{
+    width: 33%;
+    margin: 10px;
+}
+
+form>div:not(#genero){
+
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+
+form>div>label{
+    margin-bottom: 2px;
+    font-family: var(--fonte_padrao);
+    font-weight: normal;
+
+}
+
+form>div>input{
+    outline: none;
+    height: 30px;
+    border: 2px solid var(--cor_secundaria);
+    border-radius: 5px;
+    padding: 1px;
+    font-size: 1em;
+    
+}
+
+
+#telefone_paciente_2{
+    margin-top: 10px;
+}
+
+#genero{
+    padding-left: 5px;
+    
+}
+
+#genero>p{
+    font-family: var(--fonte_padrao);
+}
+
+fieldset{
+    
+    font-size: 1em;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+
+fieldset>legend{
+    font-family: var(--fonte_padrao);
+    font-size: 1.3em;
+    padding: 10px;
+    
+}
+fieldset>div{
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 0 0 40%;
+    margin: 10px;
+}
+
+fieldset>div>label{
+    margin-bottom: 2px;
+}
+
+fieldset>div>input{
+    outline: none;
+    border: 2px solid var(--cor_secundaria);
+    border-radius: 5px;
+    height: 25px;
+}
+
+
+form>button{
+    width: 35%;
+    height: 40px;
+    background-color: var(--cor_principal);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 15px;
+    color: white;
+    font-family: var(--fonte_secundaria);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.126);
+}
+
+form>button:hover{
+    background-color: var(--cor_secundaria);
 }

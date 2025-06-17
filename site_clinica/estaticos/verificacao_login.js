@@ -57,6 +57,8 @@ btn_login.addEventListener('click',(evt)=>{
 
     senha.validity.valid ? null : senha.value = ""
 
+    
+
     cpf.validity.valid && cpf.validity.valid ? formulario.submit() : null
 
 
