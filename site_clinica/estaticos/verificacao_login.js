@@ -26,6 +26,9 @@ input_cpf.addEventListener('input',()=>{
 
 })
 
+
+
+
 icone_visibilidade.addEventListener('click',()=>{
 
     icone_visibilidade.classList.toggle('senha_visivel')
@@ -33,6 +36,8 @@ icone_visibilidade.addEventListener('click',()=>{
 
 
 })
+
+
 
 
 btn_login.addEventListener('click',(evt)=>{
