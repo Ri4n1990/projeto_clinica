@@ -28,6 +28,13 @@ input_cpf.addEventListener('input',()=>{
 
 
 
+input_senha.addEventListener('input',()=>{
+    const check_senha = /\s/
+    input_senha.replace(check_senha,'')
+
+    
+})
+
 
 icone_visibilidade.addEventListener('click',()=>{
 

@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
+    <script src="../estaticos/verificacao_cadastro.js" defer></script>
+
 </head>
 <body>
 
@@ -30,12 +32,12 @@
 
         <div>
             <label for="nome_paciente">Nome completo</label>
-            <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" placeholder="EX: fulano firmino de siclano" required>
+            <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" placeholder="EX: fulano firmino de siclano" pattern="\w" required>
         </div>
 
         <div>
             <label for="cpf_paciente">CPF</label>
-            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" placeholder="EX: 000.000.000.00" required>
+            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" placeholder="EX: 000.000.000.00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
         </div>
 
         <div>
@@ -45,14 +47,14 @@
 
         <div>
             <label for="senha_paciente">Senha de acesso</label>
-            <input type="password" name="senha_paciente" id="senha_paciente" minlength="8" maxlength="15" placeholder="********"  required>
+            <input type="password" name="senha_paciente" id="senha_paciente" minlength="8" maxlength="15" placeholder="********"  pattern="\w" required>
             
         </div>
 
-        <div>
+        <div id="tel_paciente">
             <label for="telefone_paciente">Telefones para contato</label>
-            <input type="tel" name="telefone_paciente" id="telefone_paciente_1" pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$" placeholder="EX: (DDD)9-0000-0000" required>
-            <input type="tel" name="telefone_paciente" id="telefone_paciente_2" pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$" placeholder="EX: (DDD)9-0000-0000">
+            <input type="tel" name="telefone_paciente" id="telefone_paciente_1" maxlength="15" class="telefone"  pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$"   placeholder="EX: (DDD)9-0000-0000" required>
+            <input type="tel" name="telefone_paciente" id="telefone_paciente_2" class="telefone"  pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$" maxlength="15" placeholder="EX: (DDD)9-0000-0000">
         </div>
         <div id="genero">
             <p>Sexo</p>
@@ -68,36 +70,36 @@
 
             <div>
                 <label for="cep_cliente">CEP</label>
-                <input type="text" name="cep_cliente" id="cep_cliente" min="8" max="8" placeholder="EX: 00000000" required>
+                <input type="text" name="cep_cliente" id="cep_cliente"  minlength="8" maxlength="8" placeholder="EX: 00000000"  pattern="\d"  required>
             </div>
             <div>
                 <label for="bairro_cliente">Bairro</label>
-                <input type="text" name="bairro_cliente" id="bairro_cliente"  max="50" required>
+                <input type="text" name="bairro_cliente" id="bairro_cliente"  maxlength="30" pattern="\w" required>
             </div>
             <div>
                 <label for="rua_paciente">Rua/Avenida</label>
-                <input type="text" name="rua_paciente" id="rua_paciente" required>
+                <input type="text" name="rua_paciente" id="rua_paciente" pattern="\w" maxlength="50"  required>
             </div>
 
             <div>
                 <label for="numero_residencia">Número</label>
-                <input type="number" name="numero_residencia" id="numero_residencia" required>
+                <input type="number" name="numero_residencia" id="numero_residencia" max="4" pattern="\d" required>
             </div>
 
             <div>
                 <label for="cidade_paciente">Cidade</label>
-                <input type="text" name="cidade_paciente" id="cidade_paciente" required>
+                <input type="text" name="cidade_paciente" id="cidade_paciente" pattern="\w" maxlength="40" required >
                 
             </div>
 
             <div>
                 <label for="estado">Estado</label>
-                <input type="text" name="estado" id="estado" required>
+                <input type="text" name="estado" id="estado" maxlength="2" required>
             </div>
 
             <div>
                 <label for="complemento">Complemento</label>
-                <input type="text" name="complemento" id="estado" placeholder="Casa, apartamento, bloco, etc.">
+                <input type="text" name="complemento" id="estado" placeholder="Casa, apartamento, bloco, etc." maxlength="150">
             </div>
         </fieldset>
 
