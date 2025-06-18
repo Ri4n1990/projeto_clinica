@@ -30,10 +30,15 @@ input_cpf.addEventListener('input',()=>{
 
 input_senha.addEventListener('input',()=>{
     const check_senha = /\s/
+
     input_senha.value = input_senha.value.replace(check_senha,'')
+
+
 
     
 })
+
+
 
 icone_visibilidade.addEventListener('click',()=>{
 
@@ -42,6 +47,8 @@ icone_visibilidade.addEventListener('click',()=>{
 
 
 })
+
+
 
 
 btn_login.addEventListener('click',(evt)=>{
@@ -65,6 +72,8 @@ btn_login.addEventListener('click',(evt)=>{
     cpf.validity.valid ? null : cpf.value = ""
 
     senha.validity.valid ? null : senha.value = ""
+
+    
 
     cpf.validity.valid && cpf.validity.valid ? formulario.submit() : null
 
