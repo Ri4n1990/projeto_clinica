@@ -32,29 +32,34 @@
 
         <div>
             <label for="nome_paciente">Nome completo</label>
-            <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" placeholder="EX: fulano firmino de siclano" pattern="\w" required>
+            <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" placeholder="EX: fulano firmino de siclano" class="verificacao" pattern="[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)*" required>
+            <p>Digíte um nome valido!</p>
         </div>
 
         <div>
             <label for="cpf_paciente">CPF</label>
-            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" placeholder="EX: 000.000.000.00" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
+            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" placeholder="EX: 000.000.000.00" class="verificacao" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
+            <p>Digíte um CPF Válido!</p>
         </div>
 
         <div>
             <label for="email_paciente">E-mail</label>
-            <input type='email' name="email_paciente" id="email_paciente"  maxlength="320" pattern="^\w{2,}@\w+\.\w+$" placeholder="EX: jorgin55@hotmail.com"  required>
+            <input type='email' name="email_paciente" id="email_paciente"  maxlength="320" pattern="^\w{2,}@\w+\.\w+$" placeholder="EX: jorgin55@hotmail.com"class="verificacao"  required>
+            <p>Digíte um e-mail valido!</p>
         </div>
 
         <div>
             <label for="senha_paciente">Senha de acesso</label>
-            <input type="password" name="senha_paciente" id="senha_paciente" minlength="8" maxlength="15" placeholder="********"  pattern="\w" required>
+            <input type="text" name="senha_paciente" id="senha_paciente" minlength="8" maxlength="15" placeholder="********" class="verificacao" pattern="\w{8,}" required>
+            <p>Minímo de 8 caracteres!</p>
             
         </div>
 
         <div id="tel_paciente">
             <label for="telefone_paciente">Telefones para contato</label>
-            <input type="tel" name="telefone_paciente" id="telefone_paciente_1" maxlength="15" class="telefone"  pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$"   placeholder="EX: (DDD)9-0000-0000" required>
-            <input type="tel" name="telefone_paciente" id="telefone_paciente_2" class="telefone"  pattern="^\(\d{2}\)\d{1}-\d{4}-\d{4}$" maxlength="15" placeholder="EX: (DDD)9-0000-0000">
+            <input type="tel" name="telefone_paciente" id="telefone_paciente" maxlength="15" class="verificacao"  pattern="^\(\d{2}\)\d{5}-\d{4}$"   placeholder="EX: (DDD)90000-0000" required>
+            <p>Digíte um telefone valido!</p>
+            
         </div>
         <div id="genero">
             <p>Sexo</p>
@@ -70,36 +75,31 @@
 
             <div>
                 <label for="cep_cliente">CEP</label>
-                <input type="text" name="cep_cliente" id="cep_cliente"  minlength="8" maxlength="8" placeholder="EX: 00000000"  pattern="\d"  required>
+                <input type="text" name="cep_cliente" id="cep_cliente"  minlength="8" maxlength="8" placeholder="EX: 00000000" class="verificacao" pattern="\d{8}" required>
+                <p>Digíte um CEP valido!</p>
             </div>
             <div>
                 <label for="bairro_cliente">Bairro</label>
-                <input type="text" name="bairro_cliente" id="bairro_cliente"  maxlength="30" pattern="\w" required>
+                <input type="text" name="bairro_cliente" id="bairro_cliente" class="verificacao" maxlength="30" pattern="\w+" required>
+                <p>Digíte um bairro valido!</p>
+
             </div>
             <div>
                 <label for="rua_paciente">Rua/Avenida</label>
-                <input type="text" name="rua_paciente" id="rua_paciente" pattern="\w" maxlength="50"  required>
+                <input type="text" name="rua_paciente" id="rua_paciente" maxlength="50" class="verificacao" pattern="[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)*" required>
+                <p>Digíte uma rua valida!</p>
             </div>
 
             <div>
                 <label for="numero_residencia">Número</label>
-                <input type="number" name="numero_residencia" id="numero_residencia" max="4" pattern="\d" required>
+                <input type="text" name="numero_residencia" id="numero_residencia" maxlength="4" class="verificacao" inputmode="numeric" required>
+                <p>Digíte um número valido!</p>
             </div>
 
-            <div>
-                <label for="cidade_paciente">Cidade</label>
-                <input type="text" name="cidade_paciente" id="cidade_paciente" pattern="\w" maxlength="40" required >
-                
-            </div>
-
-            <div>
-                <label for="estado">Estado</label>
-                <input type="text" name="estado" id="estado" maxlength="2" required>
-            </div>
 
             <div>
                 <label for="complemento">Complemento</label>
-                <input type="text" name="complemento" id="estado" placeholder="Casa, apartamento, bloco, etc." maxlength="150">
+                <input type="text" name="complemento" id="complemento" placeholder="Casa, apartamento, bloco, etc." maxlength="150">
             </div>
         </fieldset>
 

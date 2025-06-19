@@ -175,3 +175,15 @@ form>button{
 form>button:hover{
     background-color: var(--cor_secundaria);
 }
+
+div:not(#genero)>p{
+    font-family: var(--fonte_secundaria);
+    color: red;
+    margin-top: 2px;
+    display: none;
+}
+
+
+.campo_incorreto{
+    display: inline !important;
+}
