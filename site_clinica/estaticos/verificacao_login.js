@@ -73,9 +73,41 @@ btn_login.addEventListener('click',(evt)=>{
 
     senha.validity.valid ? null : senha.value = ""
 
-    
+    if(cpf.validity.valid && senha.validity.valid){
+        const endpoint = 'http://127.0.0.1:8080/login_cliente'
 
-    cpf.validity.valid && cpf.validity.valid ? formulario.submit() : null
+        let dados = {
+            cpf_cliente : cpf.value,
+            senha_paciente : senha.value
+        }
+
+        let cabecalho = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dados)
+        }
+
+        fetch(endpoint,cabecalho).then(resp=>resp.json()).then(resposta=>{
+            console.log(resposta)
+            if('status' in resposta){
+                window.location.href = '/';
+            }else if('erro' in resposta){
+                erro_msg = document.getElementById('erro_back')
+                erro_msg.innerHTML = resposta.erro
+                erro_msg.classList.add('mensagem_erro')
+                
+            }
+            
+        })
+
+    
+    
+    
+    
+    
+    } 
 
 
     
