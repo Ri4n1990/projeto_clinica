@@ -17,18 +17,18 @@
 
     <header>
 
-        <img src="../design/logo_cabecalho.png" alt="">
+        <img src="../estaticos/design/logo_cabecalho.png" alt="">
         
         <div id="logo">
-            <img src="../design/logo.png" alt="logo_clínica_gaúcha">
+            <img src="../estaticos/design/logo.png" alt="logo_clínica_gaúcha">
         </div>
 
-        <img src="../design/logo2_cabecalho.png" alt="">
+        <img src="../estaticos/design/logo2_cabecalho.png" alt="">
 
     </header>
 
 
-    <form action="#">
+    <form autocomplete="on">
 
         <div>
             <label for="nome_paciente">Nome completo</label>
@@ -104,9 +104,33 @@
             </div>
         </fieldset>
 
-        <button type="submit">Fazer Cadastro</button>
+        <button>Fazer Cadastro</button>
 
     </form>
+
+    <dialog id="sucesso">
+        <main>
+            <div id="logo_status"></div>
+            <p class="msg">Cadastro concluido com sucesso!</p>
+            <button id="btn_confirma">Ok</button>
+        </main>
+        
+    </dialog>
+
+
+    <dialog id="excecao">
+        
+            <main>
+                <div></div>
+                <p>O cpf informado já esta cadastrado!</p>
+                <div id="botoes">
+                    <button id="login">Fazer login</button>
+                    <button id="confirma">Ok</button>
+                </div>
+            </main>
+        
+
+    </dialog>
     
 </body>
 </html>

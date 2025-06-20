@@ -5,13 +5,25 @@ let campos_input = [...document.getElementsByClassName('verificacao')]
 let btn_cadastro = document.getElementsByTagName('button')[0]
 let cep_paciente = document.getElementById('cep_cliente')
 const formulario = document.getElementsByTagName('form')[0]
+const modal_sucesso = document.querySelector('#sucesso')
+const modal_excecao = document.querySelector('#excecao')
+let msg = document.getElementById('#msg')
+let btn_confirma = document.getElementById('btn_confirma')
+
+
+
+
+
+
 
 function verifica_form(){
     let valido = true
     campos_input.map((e)=>{
 
         valido = e.validity.valid ? true : false
-        
+        if(valido == false){
+            return valido
+        }
         
 
     })
@@ -63,19 +75,17 @@ nome_paciente.addEventListener('input',()=>{
 })
 
 
-btn_cadastro.addEventListener('click',()=>{
 
 
 
-})
 
 btn_cadastro.addEventListener('click',(evt)=>{
 
     evt.preventDefault()
 
+
     campos_input.map((e)=>{
         e.setCustomValidity('')
-        console.log(e.validity)
     
         if(e.validity.valid){
             e.nextElementSibling.classList.contains('campo_incorreto') ? e.nextElementSibling.classList.remove('campo_incorreto') : null
@@ -85,7 +95,74 @@ btn_cadastro.addEventListener('click',(evt)=>{
         
     })
 
-    verifica_form() ? formulario.submit() : null
+
+
+
+    if(verifica_form()){
+        dados = {
+            nome : document.getElementById('nome_paciente').value,
+            cpf : document.getElementById('cpf_paciente').value,
+            email : document.getElementById('email_paciente').value,
+            senha : document.getElementById('senha_paciente').value,
+            telefone : document.getElementById('telefone_paciente').value,
+            sexo : document.querySelector('input[name="sexo"]:checked').value,
+            cep : document.getElementById('cep_cliente').value,
+            bairro : document.getElementById('bairro_cliente').value,
+            rua : document.getElementById('rua_paciente').value,
+            numero : document.getElementById('numero_residencia').value,
+            complemento : document.getElementById('complemento').value
+
+        }
+
+        const endpoint = 'http://127.0.0.1:8080/cadastro_cliente'
+
+        const cabecalho = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"  // Adiciona o cabeçalho correto
+            },
+            body: JSON.stringify(dados)
+            
+        }
+
+        fetch(endpoint,cabecalho).then(resposta=>resposta.json()).then(retorno =>{
+            if('status' in retorno){
+                
+                modal_sucesso.showModal()
+                btn_confirma.addEventListener('click',()=>{
+                    window.location.href = '/pagina_login'
+                })
+               
+            }else if('existente' in retorno){
+                
+                modal_excecao.showModal()
+                const btn_login = document.getElementById('login') 
+                const btn_confirma = document.getElementById('confirma')
+
+                btn_login.addEventListener('click',()=>{
+                    window.location.href = '/pagina_login'
+                })
+
+                btn_confirma.addEventListener('click',()=>{
+                    modal_excecao.close()
+
+                })
+
+
+
+            }else if('erro' in retorno){
+                
+
+                msg.innerHTML = retorno.erro
+                modal_sucesso.showModal()
+                let logo_status = document.getElementById('logo_status')
+                logo_status.classList.add('erro_back_modal')
+
+            }
+            
+        })
+
+    }
 
 
 })
@@ -120,3 +197,5 @@ cep_paciente.addEventListener('input',()=>{
 
     }
 })
+
+
