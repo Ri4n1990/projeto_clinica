@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+
+#calendario{
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: lightgray;
+    width: 30vw;
+    padding: 0;
+}
+
+#calendario>#container_ano{
+    background-color: rgb(23, 171, 28);
+    text-align: center;
+    height: 40px;
+    
+}
+
+#container_ano{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#calendario>#container_mes{
+    background-color: aquamarine;
+    text-align: center;
+
+}
+
+
+#container_mes{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+
+
+.numero_dia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightblue;
+    flex: 0 1 10%;
+    height: 40px;
+}
+
+#dias_semana{
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row nowrap;
+    background-color: rgb(127, 255, 142);
+    width: 90%;
+    margin: auto;
+    padding: 0;
+    
+}
+
+.nome_dia{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightsalmon;
+    flex: 0 1 10%;
+    height: 40px;
+}
+
+
+
+table{
+    border-spacing: 10px;
+    border: 2px solid black;
+    width: 95%;
+    margin: auto;
+    
+}
+
+
+
+td{
+    border: 2px solid black;
+    text-align: center;
+    background-color: aliceblue;
+    height: 35px;
+   
+}
+
+.dia_disponivel{
+    background-color: rebeccapurple;
+}
+
+

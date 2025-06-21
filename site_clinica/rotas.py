@@ -71,6 +71,7 @@ def cadastro_cliente():
         try:
             senha = dados.get('senha')
             senha = hashlib.sha256(senha.encode()).hexdigest()
+
             novo_paciente = Pacientes(cpf=dados.get('cpf'), nome=dados.get('nome'), sexo=dados.get('sexo'), senha_de_acesso=senha, email=dados.get('email'), )
             novo_endereco = Endereco_Paciente(cpf_paciente=dados.get('cpf'), cep=dados.get('cep'), rua=dados.get('rua'),bairro=dados.get('bairro'), numero=dados.get('numero'), complemento=dados.get('complemento'))
             novo_telefone = Telefone_Paciente(cpf_paciente=dados.get('cpf'), telefone=dados.get('telefone'))
@@ -84,6 +85,11 @@ def cadastro_cliente():
             bd.session.rollback()
             print(erro)
             return jsonify({'erro': 'Algo saiu Errado por favor tente novamente!'})
+
+
+@app.route('/pagina_agendamentos')
+def pagina_agendamentos():
+    return render_template('pagina_agendamentos.html')
 
 
 
