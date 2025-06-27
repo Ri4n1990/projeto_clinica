@@ -89,7 +89,7 @@ def cadastro_cliente():
 
 @app.route('/pagina_agendamentos')
 def pagina_agendamentos():
-    return render_template('pagina_agendamentos.html')
+    return render_template('pagina_agendamentos.html',titulo = 'Agendamentos')
 
 
 

@@ -9,8 +9,8 @@ CREATE TABLE pacientes(
     nome VARCHAR(85) NOT NULL,
     sexo ENUM("masculino","feminino"),
     senha_de_acesso CHAR(64) NOT NULL,
-    email VARCHAR(320) NOT NULL,
-    data_nascimento DATE NOT NULL
+    email VARCHAR(320) NOT NULL
+    
 
 
 
@@ -48,7 +48,7 @@ CREATE TABLE telefone_pacientes(
 
 CREATE TABLE medicos(
 	crm VARCHAR(10) PRIMARY KEY,
-    especialidade INT NOT NULL,
+    especialidade varchar(30) not null,
     nome VARCHAR(85) NOT NULL,
     senha_de_acesso CHAR(64) NOT NULL,
     email VARCHAR(320) NOT NULL
@@ -114,5 +114,5 @@ CREATE TABLE consultas(
 
 
 )CHARSET = utf8mb4;
-
+use clinica;
 

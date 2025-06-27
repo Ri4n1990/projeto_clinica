@@ -18,6 +18,7 @@ END $$
 DELIMITER $$
 
 
+
 DELIMITER $$
 
 CREATE TRIGGER reserva_disponibilidade

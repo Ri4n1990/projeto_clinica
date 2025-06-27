@@ -1,8 +1,182 @@
 @charset "UTF-8";
 
 
-#calendario{
+
+
+:root{
+    --cor_principal:#4F76C9;
+    --cor_secundaria:#91CDF5;
+    --cor_terciaria:#67DE7D;
+    --cor_base:#ffff;
+    --fonte_padrao: "Inter", sans-serif;
+    --fonte_secundaria: "Instrument Sans", sans-serif;
+}
+
+
+
+
+#etapas{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+    margin: auto;
+    margin-top: 50px;
+    width: 60vw;
+    
+
+    
+
+}
+
+#etapas>li{
+    list-style-type: none;
+    font-size: 1.7em;
+    color: rgb(224, 224, 224);
+    font-family: var(--fonte_padrao);
+    border: 2px solid rgb(224, 224, 224) ;
+    padding: 20px 30px 20px 30px ;
+    border-radius: 50%;
+}
+
+#etapas>div{
+    background-color: lightgray;
+    height: 5px;
+    width: 100%;
+}
+
+
+
+
+/* tela_1 */
+
+#tela_1{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    border: 2px solid var(--cor_terciaria);
+    border-top: 0px;
+    width: 60vw;
+    margin: auto;
+    margin-top: 50px;
+    padding-bottom: 30px;
+}
+
+#tela_1>p{
+    font-size: 2em;
+    font-family: var(--fonte_padrao);
+}
+
+#dados_paciente{
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row nowrap;
+    width: 60%;
+    
+}
+
+
+.dados{
+    display: flex;
+    flex-flow: column nowrap ;
+    flex: 0 0 40%;
+
+
+}
+
+
+.dados>dl{
+    margin-top: 15px;
+}
+
+
+.dados>dl>dt{
+
+    font-family: var(--fonte_secundaria);
+    font-size: 1.1em;
+}
+
+.dados>dl>dd{
+    text-align: center;
+    background-color: var(--cor_secundaria);
+    font-family: var(--fonte_padrao);
+    font-size: 1.2em;
+    color: var(--cor_base);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+
+
+#botoes{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 52%;
+    margin-top: 20px;
+    
+
+}
+
+#botoes>button{
+   flex: 0 0 46%;
+   border-radius: 20px;
+   border: none;
+   padding: 10px;
+   font-size: 1.4em;
+   font-family: var(--fonte_secundaria);
+   background-color: var(--cor_terciaria);
+   color: white;
+   cursor: pointer;
+}
+
+
+#botoes>button:hover{
+    background-color: var(--cor_principal);
+
+}
+
+
+
+/* tela_1 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#calendario{
+    display: none;
     flex-flow: column nowrap;
     background-color: lightgray;
     width: 30vw;
@@ -91,5 +265,6 @@ td{
 .dia_disponivel{
     background-color: rebeccapurple;
 }
+
 
 
