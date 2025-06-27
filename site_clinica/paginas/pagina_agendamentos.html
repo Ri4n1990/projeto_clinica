@@ -60,75 +60,78 @@
 </section>
 
 
+<section id="tela_2">
+    <p>Selecione a especialidade</p>
+
+    <ul>
+        <li>Clínico geral</li>
+        <li>Otorrinolaringologista</li>
+        <li>ortopedista</li>
+        <li>oftalmologista</li>
+        <li>nutricionista</li>
+        
+    </ul>
+
+    <button>Voltar</button>
+
+
+</section>
 
 
 
+<section id="tela_3">
+    <p>Selecione a data</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- tela 3 -->
-    <section id="calendario">
-        <section id="container_ano">
-            <p id="ano">Ano</p>
-        </section>
-
-        <section id="container_mes">
-            <button id="anterior">volta</button>
-            <p id="mes">mes</p>
-            <button id="posterior">proximo</button>
-        </section>
-
-        <ul id="dias_semana">
-            <li class="nome_dia">Dom</li>
-            <li class="nome_dia">Seg</li>
-            <li class="nome_dia">Ter</li>
-            <li class="nome_dia">Qua</li>
-            <li class="nome_dia">Qui</li>
-            <li class="nome_dia">Sex</li>
-            <li class="nome_dia">Sab</li>
+        <div>
+            <section id="calendario">
+                <section id="container_ano">
+                    <p id="ano">Ano</p>
+                </section>
+                <section id="container_mes">
+                    <button id="anterior"></button>
+                    <p id="mes">mes</p>
+                    <button id="posterior"></button>
+                </section>
+                <ul id="dias_semana">
+                    <li class="nome_dia">Dom</li>
+                    <li class="nome_dia">Seg</li>
+                    <li class="nome_dia">Ter</li>
+                    <li class="nome_dia">Qua</li>
+                    <li class="nome_dia">Qui</li>
+                    <li class="nome_dia">Sex</li>
+                    <li class="nome_dia">Sab</li>
             
-
-        </ul>
-        <section id="dias">
-            <table>
-
-                <tbody id="dias_do_mes">
-                   
-                    
-                </tbody>
-
-
-            </table>
+                </ul>
+                <section id="dias">
+                    <table>
+                        <tbody id="dias_do_mes">
             
             
-        </section>
-    </section>
+                        </tbody>
+                    </table>
+            
+            
+                </section>
+            </section>
+            
+            <div id="disponibilidade">
 
+                <div class="informacoes">
+                    <section class="dados_medico"><p>especialidade</p> <p>nome</p></section>
+                    <ul class="horarios">
+                        <li>13:30</li>
+                    </ul>
+                </div>
+                
+               
+                
 
-<!-- tela 3 -->
-    
-{% endblock %}
+            
+            </div>
+            
+        </div>
+            
+ </section>
+
+ {%endblock%}
+       
