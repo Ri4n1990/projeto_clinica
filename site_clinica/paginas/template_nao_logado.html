@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{{titulo}}</title>
+    <link rel="stylesheet" href="../estaticos/design_template.css">
+    <link rel="stylesheet" href="../estaticos/estilo_pagina_agendamentos.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../estaticos/estilo_pagina_agendamentos_nao_logado.css">
+    <script src="../estaticos/calendario_agendamentos.js" defer></script>
+</head>
+<body>
+
+
+    <header>
+
+        <img src="../estaticos/design/logo_cabecalho.png" alt="">
+        
+        <div id="logo">
+            <img src="../estaticos/design/logo.png" alt="logo_clínica_gaúcha">
+        </div>
+
+        <img src="../estaticos/design/logo2_cabecalho.png" alt="">
+
+    </header>
+
+    <menu>
+        <a href="{{url_for('pagina_login')}}" id="login">Fazer Login</a>
+        <ul>
+            <li>Especialidades</li>
+            <li>Agendamentos</li>
+            <li>Meus agendamentos</li>
+            <li>Dicas</li>
+        </ul>
+        <a href="{{url_for('pagina_cadastro')}}" id="cadastro">Fazer Cadastro</a>
+        
+    </menu>
+
+{% block conteudo%} {% endblock %}
+
+
+</body>
+</html>

@@ -12,7 +12,6 @@ app.secret_key = 'Y2hhdmVfc2Vzc2lvbg=='
 
 @app.route('/')
 def pagina_inicial():
-    print(session.get('usuario'))
     if 'usuario' in session:
         try:
             dados = bd.session.query(Pacientes).filter(Pacientes.cpf == session['usuario']).one()
@@ -89,15 +88,30 @@ def cadastro_cliente():
 
 @app.route('/pagina_agendamentos')
 def pagina_agendamentos():
-    return render_template('pagina_agendamentos.html',titulo = 'Agendamentos')
+
+    template_include = 'template_logado.html' if 'usuario' in session  else 'template_nao_logado.html'
+    pagina = 'pagina_agendamentos.html' if 'usuario' in session else 'pagina_agendamentos_nao_logado.html'
+    dados_paciente = bd.session.query(Pacientes).filter(Pacientes.cpf == session.get('usuario')).join(Telefone_Paciente,Telefone_Paciente.cpf_paciente == Pacientes.cpf)\
+    .with_entities(
+
+        Pacientes.nome,
+        Pacientes.email,
+        Telefone_Paciente.telefone,
+        Pacientes.cpf
 
 
+    ).one()
 
 
+    return render_template(pagina, titulo='Agendamentos', template=template_include, dados_paciente = dados_paciente)
 
 
+@app.route('/disponibilidades',methods = ['POST'])
+def disponibilidades_consulta():
+    dados = request.get_json()
+    retorno = bd.session.execute(bd.text(f'select  date_format(data_disp,"%d") from disponibilidade where date_format(data_disp,"%m") = {dados.get("mes")} and especialidade = "{dados.get("especialidade")}";'))
+    dias_disponiveis = []
+    for r in retorno:
+        dias_disponiveis.append(r[0]) if r[0] not in dias_disponiveis else None
 
-
-
-
-
+    return  jsonify({'dias': dias_disponiveis})

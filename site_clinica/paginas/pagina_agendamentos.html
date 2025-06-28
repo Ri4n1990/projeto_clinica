@@ -1,5 +1,6 @@
 
-{% extends "template.html"%}
+
+{% include template %}
 
 {% block conteudo%}
 
@@ -17,18 +18,18 @@
 
 
 
-<section id="tela_1">
+<section id="tela_1" style="display: flex;">
     <p>Confirme seus dados</p>
     <section id="dados_paciente">
 
         <div class="dados">
             <dl>
                 <dt>Nome</dt>
-                <dd>definicao</dd>
+                <dd>{{dados_paciente[0]}}</dd>
             </dl>
             <dl>
                 <dt>Telefone</dt>
-                <dd>definicao</dd>
+                <dd>{{dados_paciente[2]}}</dd>
             </dl>
         
         </div>
@@ -37,11 +38,11 @@
         
             <dl>
                 <dt>E-mail</dt>
-                <dd>definicao</dd>
+                <dd>{{dados_paciente[1]}}</dd>
             </dl>
             <dl>
                 <dt>CPF</dt>
-                <dd>definicao</dd>
+                <dd>{{dados_paciente[3]}}</dd>
             </dl>
 
             
@@ -52,18 +53,19 @@
 
 <div id="botoes">
     
-        <button>confirmar</button>
-        <button>editar dados</button>
+        <button id="confirma">Confirmar</button>
+        <button>Editar dados</button>
 </div>
 
 
 </section>
 
 
-<section id="tela_2">
+<section id="tela_2" style="display: none;">
+
     <p>Selecione a especialidade</p>
 
-    <ul>
+    <ul id="especialidades">
         <li>Clínico geral</li>
         <li>Otorrinolaringologista</li>
         <li>ortopedista</li>
@@ -72,14 +74,14 @@
         
     </ul>
 
-    <button>Voltar</button>
+    <button id="btn_voltar">Voltar</button>
 
 
 </section>
 
 
 
-<section id="tela_3">
+<section id="tela_3" style="display: none;">
     <p>Selecione a data</p>
 
         <div>
@@ -130,8 +132,55 @@
             </div>
             
         </div>
+
+        <div id="botoes_agendamento">
+
+            <button id="btn_voltar_tela3">Voltar</button>
+            <button id="btn_agendar">Agendar</button>
+        </div>
+
             
  </section>
+
+
+ <section id="tela_4"  style="display: none;">
+    <p>Confirme os dados da consulta</p>
+
+    <ul id="info_consulta">
+
+        <li><span class="descricao">Horário</span> <span>13:30</span></li>
+        <li><span class="descricao">Data</span> <span>10/09/25</span></li>
+        <li><span class="descricao">Local</span> <span>aloisio mota 333</span></li>
+        <li><span class="descricao">Doutor(a)</span> <span>Jorjão buarque melo tudo</span></li>
+        <li><span class="descricao">Especialidade</span> <span>Ortospanedista</span></li>
+
+    </ul>
+
+    <div id="botoes_finalizar">
+
+        <button>Voltar</button>
+        <button>Confirmar</button>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+ 
 
  {%endblock%}
        

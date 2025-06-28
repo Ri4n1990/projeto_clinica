@@ -51,7 +51,7 @@
 /* tela_1 */
 
 #tela_1{
-    display: none;
+    
     flex-flow: column nowrap;
     align-items: center;
     border: 2px solid var(--cor_terciaria);
@@ -60,6 +60,7 @@
     margin: auto;
     margin-top: 50px;
     padding-bottom: 30px;
+    
 }
 
 #tela_1>p{
@@ -146,7 +147,7 @@
 
 
 #tela_2{
-    display: none;
+    
     flex-flow: column nowrap;
     align-items: center;
     border: 2px solid var(--cor_terciaria);
@@ -155,6 +156,7 @@
     margin: auto;
     margin-top: 40px;
     padding-bottom: 20px;
+    
 }
 
 #tela_2>p{
@@ -240,7 +242,6 @@
 
 
 #tela_3{
-    display: flex;
     flex-flow: column nowrap;
     align-items: center;
     border: 2px solid var(--cor_terciaria);
@@ -248,7 +249,7 @@
     width: 60vw;
     margin: auto;
     margin-top: 40px;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
 }
 
 #tela_3>p{
@@ -412,11 +413,13 @@ td{
     flex-flow: column nowrap;
     padding: 10px;
     flex: 0 0 50%;
+    
 }
 
 #disponibilidade>.informacoes{
     background-color: #91CDF5;
     flex: 0 0 25%;
+    border-radius: 10px;
     
     
 
@@ -441,6 +444,7 @@ td{
     flex-flow: row nowrap;
     height: 70%;
     align-items: center;
+    border-radius: 10px;
     background-color: var(--cor_secundaria);
     
 }
@@ -460,3 +464,138 @@ td{
 .horarios>li:hover{
     border: 2px solid var(--cor_terciaria);
 }
+
+#botoes_agendamento{
+   margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    
+    
+    
+}
+
+#botoes_agendamento>button{
+    background-color: var(--cor_terciaria);
+    color: var(--cor_base);
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 1.4em;
+    font-family: var(--fonte_padrao);
+    flex:  0 0 20%;
+    cursor: pointer;
+
+}
+
+
+#botoes_agendamento>button:hover{
+    background-color: var(--cor_principal);
+}
+
+
+.dias_indisponiveis{
+    opacity: 50%;
+}
+
+.disponivel{
+    background-color: red;
+}
+
+#dias_do_mes>tr>td:not(.disponivel){
+    opacity: 50%;
+}
+/* tela 4 */
+
+
+
+#tela_4{
+    flex-flow: column nowrap;
+    align-items: center;
+    border: 2px solid var(--cor_terciaria);
+    border-top: 0px;
+    width: 60vw;
+    margin: auto;
+    margin-top: 40px;
+    padding-bottom: 30px;
+}
+
+#tela_4>p{
+    font-size: 2em;
+    font-family: var(--fonte_padrao);
+    padding-bottom: 30px;
+}
+
+
+#info_consulta{
+    padding: 20px;
+    background-color: var(--cor_secundaria);
+    width: 40%;
+    border-radius: 30px;
+}
+
+#info_consulta>li{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--cor_principal);
+    margin-top: 10px;
+    height: 50px;
+    border-radius: 20px;
+}
+
+#info_consulta>li>.descricao{
+    color: var(--cor_base);
+    font-family: var(--fonte_secundaria);
+    font-size: 1.4em;
+    margin-left: 20px;
+    font-weight: bolder;
+}
+
+#info_consulta>li>span:not(.descricao){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--cor_base);
+    height: 100%;
+    border-radius: 20px;
+    padding: 0 10px 0;
+    color: var(--cor_principal);
+    font-size: 1.3em;
+    font-family: var(--fonte_padrao);
+    font-weight: 550;
+    max-width: 60%;
+}
+
+
+
+#botoes_finalizar{
+     margin-top: 20px;
+     display: flex;
+     justify-content: center;
+     gap: 30px;
+     flex-flow: row nowrap;
+     width: 42%;
+     
+     
+     
+ }
+ 
+ #botoes_finalizar>button{
+     background-color: var(--cor_terciaria);
+     color: var(--cor_base);
+     border: none;
+     padding: 10px;
+     border-radius: 30px;
+     font-size: 1.4em;
+     font-family: var(--fonte_padrao);
+     flex:  0 0 50%;
+     cursor: pointer;
+ 
+ }
+ 
+ 
+ #botoes_finalizar>button:hover{
+     background-color: var(--cor_principal);
+ }

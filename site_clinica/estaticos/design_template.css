@@ -69,9 +69,45 @@ header>img:not(#logo){
 }
 
 menu{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
     width: 100vw;
     background-color: var(--cor_principal);
     border-top: 2px solid var(--cor_secundaria);
+}
+
+menu>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor_terciaria);
+    color: var(--cor_base);
+    text-decoration: none;
+    height: 40px;
+    border: 1px solid var(--cor_base);
+    width: 15%;
+    font-size: 1.3em;
+    font-family: var(--fonte_padrao);
+    
+}
+
+
+menu>a:hover{
+    background-color: var(--cor_secundaria);
+}
+
+#login{
+    border-left: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#cadastro{
+    border-right: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 menu>ul{
@@ -82,6 +118,7 @@ menu>ul{
     justify-content: space-evenly;
     align-items: center;
     height: 50px;
+
 }
 
 
@@ -97,4 +134,17 @@ menu>ul>li{
 
 menu>ul>li:hover{
     border-bottom: 2px solid var(--cor_terciaria);
+}
+
+
+#icone_usuario{
+    width: 2%;
+    height: 40px;
+    border-radius: 20px;
+    background-image: url("../estaticos/design/icone_usuario.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+    cursor: pointer;
 }

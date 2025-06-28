@@ -1,3 +1,6 @@
+
+
+
 const data_atual = new Date()
 data_atual.setDate(1)
 
@@ -7,6 +10,11 @@ let mes = document.getElementById('mes')
 const seta_anterior = document.getElementById('anterior')
 const seta_posterior = document.getElementById('posterior')
 const meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+
+let especialidades = [...document.querySelectorAll('#especialidades>li')]
+
+let especialidade_escolhida = null
+
 
 
 
@@ -36,6 +44,7 @@ function dias_anteriores(data){
 
             if(minha_data.getDay() == 0){
                 let td = document.createElement('td')
+                td.classList.add('dias_indisponiveis')
                 td.innerHTML = minha_data.getDate()
                 dias_mes_passado.push(td)
                 dias_mes_passado.reverse()
@@ -81,6 +90,7 @@ function dias_posteriores(data){
             if(minha_data.getDay() == 6){
 
                 let td = document.createElement('td')
+                td.classList.add('dias_indisponiveis')
                 td.innerHTML = i <10 ? '0'+ i : i
                 dias_mes.push(td)
                 break
@@ -88,6 +98,7 @@ function dias_posteriores(data){
 
 
             let td = document.createElement('td')
+            td.classList.add('dias_indisponiveis')
             td.innerHTML = minha_data.getDate() <10 ? '0'+minha_data.getDate() : minha_data.getDate()
             dias_mes.push(td)
             i++
@@ -105,20 +116,72 @@ function dias_posteriores(data){
 }
 
 
-function dias_do_mes(data){
-
-    
+async function dias_do_mes(data){
     let ultimo_dia = ultimo_dia_mes(data.getFullYear(),data.getMonth())
+    let mes_atual = data.getMonth()+1
+    let dados = {'especialidade': especialidade_escolhida,'mes':mes_atual}
+    const edpoint = 'http://127.0.0.1:8080/disponibilidades'
 
     
-    for(let x = 1; x<= ultimo_dia; x++){
-         let td = document.createElement('td')
-         td.innerHTML = x <10 ? '0'+ x : x
-        dias_mes.push(td)
-        
+    
+
+    let cabecalho = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(dados)
     }
 
-    return dias_mes
+    let dias_disponiveis = await fetch(edpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
+        
+        return resposta.dias
+        
+
+
+    })
+
+    
+
+    if(dias_disponiveis.length == 0){
+        for(let x = 1; x<= ultimo_dia; x++){
+            let td = document.createElement('td')
+            td.innerHTML = x <10 ? '0'+ x : x
+           dias_mes.push(td)
+        
+
+
+    }}else{
+        
+        
+
+        for(let x = 1; x<= ultimo_dia; x++){
+            let td = document.createElement('td')
+            td.innerHTML = x <10 ? '0'+ x : x
+            dias_disponiveis.map((e)=>{
+                td.innerHTML === e ? td.classList.add('disponivel') : null
+
+            })
+            
+            dias_mes.push(td)
+
+
+
+    }
+
+    
+    
+
+
+
+    
+       
+   }
+    
+    
+    
+
+   
 
 }
 
@@ -173,16 +236,28 @@ let elementos = []
 let dias_mes = []
 
 
-dias_anteriores(data_atual)
-dias_do_mes(data_atual)
-dias_posteriores(data_atual)
-ano.innerHTML = data_atual.getFullYear()
-mes.innerHTML = meses[data_atual.getMonth()]
-cria_calendario()
 
+
+
+
+
+
+especialidades.map((e)=>{
+    e.addEventListener('click', async (evt)=>{
+        especialidade_escolhida = e.innerHTML
+        tela_2.style = 'display:none;'
+        tela_3.style = 'display:flex'
+        dias_anteriores(data_atual)
+        await dias_do_mes(data_atual)
+        dias_posteriores(data_atual)
+        ano.innerHTML = data_atual.getFullYear()
+        mes.innerHTML = meses[data_atual.getMonth()]
+        cria_calendario()
+    })
+})
 
 let agora  = data_atual
-seta_posterior.addEventListener('click',()=>{
+seta_posterior.addEventListener('click', async ()=>{
     let linhas_tabela = [...document.getElementsByTagName('tr')]
     linhas_tabela.map((e)=>{
         corpo_tabela.removeChild(e)
@@ -192,7 +267,7 @@ seta_posterior.addEventListener('click',()=>{
     agora.setDate(1)
     agora.setMonth(agora.getMonth()+1)
     dias_anteriores(agora)
-    dias_do_mes(agora)
+    await dias_do_mes(agora)
     dias_posteriores(agora)
     cria_calendario()
     mes.innerHTML = meses[agora.getMonth()]
@@ -210,7 +285,7 @@ seta_posterior.addEventListener('click',()=>{
 })
 
     
-seta_anterior.addEventListener('click',()=>{
+seta_anterior.addEventListener('click', async()=>{
     
     
     let mes_atras = new Date()
@@ -234,7 +309,7 @@ seta_anterior.addEventListener('click',()=>{
     agora.setDate(1)
     agora.setMonth(agora.getMonth()-1)
     dias_anteriores(agora)
-    dias_do_mes(agora)
+    await dias_do_mes(agora)
     dias_posteriores(agora)
     cria_calendario()
     mes.innerHTML = meses[agora.getMonth()]
