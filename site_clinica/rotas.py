@@ -2,7 +2,7 @@ import json
 
 from nucleo import app
 from nucleo import bd
-from  models import Pacientes , Endereco_Paciente, Telefone_Paciente
+from  models import Pacientes , Endereco_Paciente, Telefone_Paciente , Disponibilidade , Registra, Medicos
 from sqlalchemy.orm.exc import NoResultFound
 from flask import request, render_template, url_for, redirect ,jsonify , session
 import  hashlib
@@ -89,29 +89,79 @@ def cadastro_cliente():
 @app.route('/pagina_agendamentos')
 def pagina_agendamentos():
 
-    template_include = 'template_logado.html' if 'usuario' in session  else 'template_nao_logado.html'
+    template_include = 'template_logado.html' if 'usuario' in session else 'template_nao_logado.html'
     pagina = 'pagina_agendamentos.html' if 'usuario' in session else 'pagina_agendamentos_nao_logado.html'
-    dados_paciente = bd.session.query(Pacientes).filter(Pacientes.cpf == session.get('usuario')).join(Telefone_Paciente,Telefone_Paciente.cpf_paciente == Pacientes.cpf)\
-    .with_entities(
 
-        Pacientes.nome,
-        Pacientes.email,
-        Telefone_Paciente.telefone,
-        Pacientes.cpf
+    if 'usuario' in session:
+        dados_paciente = bd.session.query(Pacientes).filter(Pacientes.cpf == session.get('usuario')).join(Telefone_Paciente,Telefone_Paciente.cpf_paciente == Pacientes.cpf)\
+        .with_entities(
+
+            Pacientes.nome,
+            Pacientes.email,
+            Telefone_Paciente.telefone,
+            Pacientes.cpf
 
 
-    ).one()
+        ).one()
 
 
-    return render_template(pagina, titulo='Agendamentos', template=template_include, dados_paciente = dados_paciente)
+        return render_template(pagina, titulo='Agendamentos', template=template_include, dados_paciente = dados_paciente)
+
+    return render_template(pagina, titulo='Agendamentos', template=template_include)
 
 
 @app.route('/disponibilidades',methods = ['POST'])
 def disponibilidades_consulta():
     dados = request.get_json()
-    retorno = bd.session.execute(bd.text(f'select  date_format(data_disp,"%d") from disponibilidade where date_format(data_disp,"%m") = {dados.get("mes")} and especialidade = "{dados.get("especialidade")}";'))
+    retorno = bd.session.execute(bd.text(f'select  date_format(data_disp,"%d") from disponibilidade where date_format(data_disp,"%m") = {dados.get("mes")} and especialidade = "{dados.get("especialidade")}" and date_format(data_disp,"%Y") = {dados.get("ano")};'))
     dias_disponiveis = []
     for r in retorno:
         dias_disponiveis.append(r[0]) if r[0] not in dias_disponiveis else None
 
     return  jsonify({'dias': dias_disponiveis})
+
+
+@app.route('/info_datas',methods = ['POST'])
+def info_datas():
+    dados = request.get_json()
+    data = f'{dados.get("ano")}-{dados.get("mes")}-{dados.get("dia")}'
+
+    disponibilidade = bd.session.query(Disponibilidade).filter(Disponibilidade.data_disp == f'{data}').join(
+        Registra, Registra.id_disponibilidade == Disponibilidade.id_disponibilidade).join(Medicos,Registra.crm_medico == Medicos.crm) \
+        .with_entities(
+
+        Medicos.nome,
+        Disponibilidade.hora
+
+    ).order_by(Disponibilidade.hora).all()
+
+    resposta = {}
+
+    for e in disponibilidade:
+        if e.nome not in resposta:
+            resposta[e.nome] = []
+
+        resposta[e.nome].append(e.hora.strftime("%H:%M"))
+
+    return  jsonify(resposta)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 'oi'

@@ -11,6 +11,7 @@ const seta_anterior = document.getElementById('anterior')
 const seta_posterior = document.getElementById('posterior')
 const meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
+
 let especialidades = [...document.querySelectorAll('#especialidades>li')]
 
 let especialidade_escolhida = null
@@ -119,7 +120,8 @@ function dias_posteriores(data){
 async function dias_do_mes(data){
     let ultimo_dia = ultimo_dia_mes(data.getFullYear(),data.getMonth())
     let mes_atual = data.getMonth()+1
-    let dados = {'especialidade': especialidade_escolhida,'mes':mes_atual}
+    
+    let dados = {'especialidade': especialidade_escolhida,'mes':mes_atual, 'ano': data.getFullYear()}
     const edpoint = 'http://127.0.0.1:8080/disponibilidades'
 
     
@@ -237,22 +239,63 @@ let dias_mes = []
 
 
 
-
-
-
-
-
 especialidades.map((e)=>{
     e.addEventListener('click', async (evt)=>{
         especialidade_escolhida = e.innerHTML
         tela_2.style = 'display:none;'
         tela_3.style = 'display:flex'
+        let dias_existentes = [...document.getElementsByTagName('tr')]
+        if(dias_existentes.length != 0){
+
+
+            dias_existentes.map((e)=>{
+                
+                corpo_tabela.removeChild(e)
+
+            })
+
+            dias_mes = []
+
+        } 
+
         dias_anteriores(data_atual)
         await dias_do_mes(data_atual)
         dias_posteriores(data_atual)
         ano.innerHTML = data_atual.getFullYear()
         mes.innerHTML = meses[data_atual.getMonth()]
         cria_calendario()
+
+        let consultas_disponoveis = [...document.getElementsByClassName('disponivel')]
+       
+        consultas_disponoveis.map((e)=>{
+            e.addEventListener('click',(evt)=>{
+                let dados = {
+                    dia: e.innerHTML,
+                    ano: document.getElementById('ano').innerHTML,
+                    mes: meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1,
+                    
+
+                }
+
+                let endpoint = "http://127.0.0.1:8080/info_datas"
+
+                let cabecalho = {
+                    method : 'POST',
+                    headers : {"Content-Type" : "Application/json"},
+                    body:    JSON.stringify(dados)
+
+                }
+
+                fetch(endpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
+                    let chaves = Object.keys(resposta)
+                    chaves.map((e)=>{
+                        // 
+                    })
+                })
+
+            })
+        })
+        
     })
 })
 
