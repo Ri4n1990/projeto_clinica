@@ -43,11 +43,11 @@ INSERT INTO telefone_pacientes (cpf_paciente, telefone) VALUES
 ('666.777.888-99', '(51)92109-8765'),
 ('777.888.999-00', '(51)91098-7654');
 
-
+Select med.nome , disp.hora from disponibilidade disp JOIN registra reg ON disp.id_disponibilidade = reg.id_disponibilidade JOIN medicos med ON reg.crm_medico = med.crm group by(med.nome);
 
 select p.senha_de_acesso,p.cpf,p.nome,t.telefone,e.cep,e.rua,e.bairro FROM pacientes p JOIN telefone_pacientes t ON p.cpf = t.cpf_paciente JOIN endereco_paciente e ON p.cpf = e.cpf_paciente;
 
-
+SELECT * FROM disponibilidade;
 INSERT INTO registra (id_registro, crm_medico, id_disponibilidade) VALUES
 ('REG001', 'CRM001', 'DISP001'),
 ('REG002', 'CRM002', 'DISP002'),
@@ -69,6 +69,9 @@ INSERT INTO registra (id_registro, crm_medico, id_disponibilidade) VALUES
 ('REG018', 'CRM003', 'DISP018'),
 ('REG019', 'CRM004', 'DISP019'),
 ('REG020', 'CRM005', 'DISP020');
+
+
+
 
 
 

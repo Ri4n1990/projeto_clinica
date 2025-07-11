@@ -250,6 +250,7 @@
     margin: auto;
     margin-top: 40px;
     padding-bottom: 30px;
+    
 }
 
 #tela_3>p{
@@ -259,11 +260,13 @@
 }
 
 
-#tela_3>div{
+#tela_3>div:not(#botoes_agendamento){
     display: flex;
     flex-flow: row nowrap;
     gap: 30px;
     width: 90%;
+    
+    
 }
 
 
@@ -392,7 +395,7 @@ td{
     text-align: center;
     background-color: aliceblue;
     height: 35px;
-    cursor: pointer;
+    cursor: default;
     border-radius: 10px;
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.161);
     font-family: var(--fonte_padrao);
@@ -401,9 +404,7 @@ td{
    
 }
 
-.dia_disponivel{
-    background-color: rebeccapurple;
-}
+
 
 
 
@@ -414,6 +415,8 @@ td{
     flex-flow: column nowrap;
     padding: 10px;
     flex: 0 0 50%;
+    height: 100%;
+    gap: 10px;
     
 }
 
@@ -421,6 +424,7 @@ td{
     background-color: #91CDF5;
     flex: 0 0 25%;
     border-radius: 10px;
+
     
     
 
@@ -430,6 +434,7 @@ td{
     display: flex;
     align-items: center;
     height: 30%;
+    padding: 5px;
     background-color: var(--cor_principal);
 }
 
@@ -444,6 +449,7 @@ td{
     display: flex;
     flex-flow: row nowrap;
     height: 70%;
+    padding: 10px;
     align-items: center;
     border-radius: 10px;
     background-color: var(--cor_secundaria);
@@ -466,11 +472,17 @@ td{
     border: 2px solid var(--cor_terciaria);
 }
 
+#horario_selecionado{
+    border: 2px solid var(--cor_terciaria);
+
+}
+
 #botoes_agendamento{
    margin-top: 20px;
     display: flex;
     justify-content: center;
     flex-flow: row nowrap;
+    gap: 30px;
     
     
     
@@ -484,7 +496,7 @@ td{
     border-radius: 30px;
     font-size: 1.4em;
     font-family: var(--fonte_padrao);
-    flex:  0 0 20%;
+    flex:  0 0 50%;
     cursor: pointer;
 
 }
@@ -497,10 +509,26 @@ td{
 
 .dias_indisponiveis{
     opacity: 50%;
+    
 }
 
 .disponivel{
-    background-color: red;
+    background-color: var(--cor_secundaria);
+    cursor: pointer;
+}
+
+
+.disponivel:hover{
+    background-color: var(--cor_principal);
+    color: white;
+
+    
+}
+
+#dia_selecionado{
+    background-color: var(--cor_principal);
+    color: white;
+    
 }
 
 #dias_do_mes>tr>td:not(.disponivel){

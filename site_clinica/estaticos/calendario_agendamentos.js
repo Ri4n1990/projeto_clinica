@@ -229,6 +229,52 @@ function cria_calendario(){
 
 }
 
+function dia_selecionado(){
+    let dia_disponivel = [...document.getElementsByClassName('disponivel')]
+    dia_disponivel.map((e)=>{
+        e.addEventListener('click',()=>{
+            let dia_selecionado = document.getElementById('dia_selecionado')
+            if(dia_selecionado != null){
+                dia_selecionado.removeAttribute('id')
+
+            }
+            e.id = 'dia_selecionado'
+        })
+    })
+}
+
+function horario_selecionado(){
+    let hora_disponivel = [...document.getElementsByClassName('hora_disponivel')]
+    
+    hora_disponivel.map((e)=>{
+        
+        e.addEventListener('click',()=>{
+            let hora_selecionada = document.getElementById('horario_selecionado')
+            if(hora_selecionada != null){
+                
+                hora_selecionada.removeAttribute('id')
+
+            }
+            
+            e.id = 'horario_selecionado'
+        })
+    })
+}
+
+function limpa_horarios(){
+    let disponibilidade = document.getElementById('disponibilidade')
+    let elementos_exist = [...disponibilidade.childNodes]
+    
+
+    if(elementos_exist.length >1){
+        let dados_exist = [...document.getElementsByClassName('informacoes')]
+        
+        dados_exist.forEach(e => {
+            e.remove()
+            
+        });
+    }
+}
 
 
 
@@ -264,11 +310,17 @@ especialidades.map((e)=>{
         ano.innerHTML = data_atual.getFullYear()
         mes.innerHTML = meses[data_atual.getMonth()]
         cria_calendario()
+        dia_selecionado()
+
+        
+        
 
         let consultas_disponoveis = [...document.getElementsByClassName('disponivel')]
        
         consultas_disponoveis.map((e)=>{
             e.addEventListener('click',(evt)=>{
+                
+
                 let dados = {
                     dia: e.innerHTML,
                     ano: document.getElementById('ano').innerHTML,
@@ -286,12 +338,53 @@ especialidades.map((e)=>{
 
                 }
 
+                limpa_horarios()
+                
                 fetch(endpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
                     let chaves = Object.keys(resposta)
-                    chaves.map((e)=>{
-                        // 
+                    let valores = Object.values(resposta)
+
+                   
+                    chaves.map((e,p)=>{
+                        let div = document.createElement('div')
+                        div.classList.add('informacoes')
+
+                        let section = document.createElement('section')
+                        section.classList.add('dados_medico')
+
+                        let p_especialidade = document.createElement('p')
+                        let p_nome_medico = document.createElement('p')
+                        p_especialidade.id = 'especialidade_medico'
+                        p_nome_medico.id = 'nome_profissional'
+                        p_especialidade.innerHTML = especialidade_escolhida
+                        p_nome_medico.innerHTML = e
+
+                        section.appendChild(p_nome_medico)
+                        section.appendChild(p_especialidade)
+                        
+
+                        let ul = document.createElement('ul')
+                        ul.classList.add('horarios')
+
+                        valores[p].map((v)=>{
+                            let li = document.createElement('li')
+                            li.classList.add('hora_disponivel')
+                            li.innerHTML = v
+                            ul.appendChild(li)
+                            
+                            
+                        })
+                        div.appendChild(section)
+                        div.appendChild(ul)
+                        disponibilidade.appendChild(div)
+                        
+                        
                     })
+
+                    horario_selecionado()
+                    
                 })
+                
 
             })
         })
@@ -301,6 +394,9 @@ especialidades.map((e)=>{
 
 let agora  = data_atual
 seta_posterior.addEventListener('click', async ()=>{
+
+    limpa_horarios()
+
     let linhas_tabela = [...document.getElementsByTagName('tr')]
     linhas_tabela.map((e)=>{
         corpo_tabela.removeChild(e)
@@ -313,10 +409,82 @@ seta_posterior.addEventListener('click', async ()=>{
     await dias_do_mes(agora)
     dias_posteriores(agora)
     cria_calendario()
+    dia_selecionado()
     mes.innerHTML = meses[agora.getMonth()]
     ano.innerHTML = agora.getFullYear()
-    
-    
+
+    let consultas_disponoveis = [...document.getElementsByClassName('disponivel')]
+       
+        consultas_disponoveis.map((e)=>{
+            e.addEventListener('click',(evt)=>{
+                
+
+                let dados = {
+                    dia: e.innerHTML,
+                    ano: document.getElementById('ano').innerHTML,
+                    mes: meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1,
+                    
+
+                }
+
+                let endpoint = "http://127.0.0.1:8080/info_datas"
+
+                let cabecalho = {
+                    method : 'POST',
+                    headers : {"Content-Type" : "Application/json"},
+                    body:    JSON.stringify(dados)
+
+                }
+
+                limpa_horarios()
+                
+                fetch(endpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
+                    let chaves = Object.keys(resposta)
+                    let valores = Object.values(resposta)
+
+                   
+                    chaves.map((e,p)=>{
+                        let div = document.createElement('div')
+                        div.classList.add('informacoes')
+
+                        let section = document.createElement('section')
+                        section.classList.add('dados_medico')
+
+                        let p_especialidade = document.createElement('p')
+                        let p_nome_medico = document.createElement('p')
+                        p_especialidade.id = 'especialidade_medico'
+                        p_nome_medico.id = 'nome_profissional'
+                        
+                        p_especialidade.innerHTML = especialidade_escolhida
+                        p_nome_medico.innerHTML = e
+
+                        section.appendChild(p_nome_medico)
+                        section.appendChild(p_especialidade)
+                        
+
+                        let ul = document.createElement('ul')
+                        ul.classList.add('horarios')
+
+                        valores[p].map((v)=>{
+                            let li = document.createElement('li')
+                            li.classList.add('hora_disponivel')
+                            li.innerHTML = v
+                            ul.appendChild(li)
+                            
+                            
+                        })
+                        div.appendChild(section)
+                        div.appendChild(ul)
+                        disponibilidade.appendChild(div)
+                        
+                        
+
+                    })
+                    horario_selecionado()
+                })
+
+            })
+        })
 
 
 
@@ -330,7 +498,8 @@ seta_posterior.addEventListener('click', async ()=>{
     
 seta_anterior.addEventListener('click', async()=>{
     
-    
+    limpa_horarios()
+
     let mes_atras = new Date()
     mes_atras.setMonth(agora.getMonth()-1)
     mes_atras.setDate(1)
@@ -355,11 +524,83 @@ seta_anterior.addEventListener('click', async()=>{
     await dias_do_mes(agora)
     dias_posteriores(agora)
     cria_calendario()
+    dia_selecionado()
     mes.innerHTML = meses[agora.getMonth()]
     ano.innerHTML = agora.getFullYear()
-    
-    
-})
+
+
+    let consultas_disponoveis = [...document.getElementsByClassName('disponivel')]
+       
+        consultas_disponoveis.map((e)=>{
+            e.addEventListener('click',(evt)=>{
+                
+
+                let dados = {
+                    dia: e.innerHTML,
+                    ano: document.getElementById('ano').innerHTML,
+                    mes: meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1,
+                    
+
+                }
+
+                let endpoint = "http://127.0.0.1:8080/info_datas"
+
+                let cabecalho = {
+                    method : 'POST',
+                    headers : {"Content-Type" : "Application/json"},
+                    body:    JSON.stringify(dados)
+
+                }
+
+                limpa_horarios()
+                
+                fetch(endpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
+                    let chaves = Object.keys(resposta)
+                    let valores = Object.values(resposta)
+
+                   
+                    chaves.map((e,p)=>{
+                        let div = document.createElement('div')
+                        div.classList.add('informacoes')
+
+                        let section = document.createElement('section')
+                        section.classList.add('dados_medico')
+
+                        let p_especialidade = document.createElement('p')
+                        let p_nome_medico = document.createElement('p')
+                        p_especialidade.id = 'especialidade_medico'
+                        p_nome_medico.id = 'nome_profissional'
+                        p_especialidade.innerHTML = especialidade_escolhida
+                        p_nome_medico.innerHTML = e
+
+                        section.appendChild(p_nome_medico)
+                        section.appendChild(p_especialidade)
+                        
+
+                        let ul = document.createElement('ul')
+                        ul.classList.add('horarios')
+
+                        valores[p].map((v)=>{
+                            let li = document.createElement('li')
+                            li.classList.add('hora_disponivel')
+                            li.innerHTML = v
+                            ul.appendChild(li)
+                            
+                            
+                        })
+                        div.appendChild(section)
+                        div.appendChild(ul)
+                        disponibilidade.appendChild(div)
+                        
+                        
+
+                    })
+                    horario_selecionado()
+                })
+
+            })
+        })
+    })
 
     
         
