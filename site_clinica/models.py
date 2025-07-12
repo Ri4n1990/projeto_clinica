@@ -87,3 +87,19 @@ class Medicos(bd.Model):
 
     def __str__(self):
         return f'[ crm : {self.crm} , especialidade : {self.especialidade} , nome : {self.nome} , senha_de_acesso : {self.senha_de_acesso} , email : {self.email} ]'
+
+
+class Consultas(bd.Model):
+    __tablename__ = 'consultas'
+
+    id_consulta = bd.Column(bd.String(16),  nullable = False, primary_key = True)
+    crm_medico = bd.Column(bd.String(10), bd.ForeignKey('medicos.crm'), nullable = False)
+    cpf_paciente = bd.Column(bd.String(14), bd.ForeignKey('pacientes.cpf'), nullable = False)
+    data_consulta = bd.Column(bd.Date, nullable = False)
+    hora = bd.Column(bd.Time, nullable = False )
+    bd.relationship('Medicos', backref = 'consultas', foreign_keys = [crm_medico])
+    bd.relationship('Pacientes', backref = 'consultas', foreign_keys = [cpf_paciente])
+
+
+    def __str__(self):
+        return f'[ id_consulta : {self.id_consulta} , crm_medico : {self.crm_medico} , cpf_paciente : {self.cpf_paciente} , data_consulta : {self.data_consulta} , hora : {self.hora}]'

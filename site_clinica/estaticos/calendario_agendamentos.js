@@ -1,6 +1,4 @@
 
-
-
 const data_atual = new Date()
 data_atual.setDate(1)
 
@@ -355,7 +353,6 @@ especialidades.map((e)=>{
                         let p_especialidade = document.createElement('p')
                         let p_nome_medico = document.createElement('p')
                         p_especialidade.id = 'especialidade_medico'
-                        p_nome_medico.id = 'nome_profissional'
                         p_especialidade.innerHTML = especialidade_escolhida
                         p_nome_medico.innerHTML = e
 
@@ -453,7 +450,6 @@ seta_posterior.addEventListener('click', async ()=>{
                         let p_especialidade = document.createElement('p')
                         let p_nome_medico = document.createElement('p')
                         p_especialidade.id = 'especialidade_medico'
-                        p_nome_medico.id = 'nome_profissional'
                         
                         p_especialidade.innerHTML = especialidade_escolhida
                         p_nome_medico.innerHTML = e
@@ -569,7 +565,6 @@ seta_anterior.addEventListener('click', async()=>{
                         let p_especialidade = document.createElement('p')
                         let p_nome_medico = document.createElement('p')
                         p_especialidade.id = 'especialidade_medico'
-                        p_nome_medico.id = 'nome_profissional'
                         p_especialidade.innerHTML = especialidade_escolhida
                         p_nome_medico.innerHTML = e
 

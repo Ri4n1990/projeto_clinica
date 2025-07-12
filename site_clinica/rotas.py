@@ -2,7 +2,7 @@ import json
 
 from nucleo import app
 from nucleo import bd
-from  models import Pacientes , Endereco_Paciente, Telefone_Paciente , Disponibilidade , Registra, Medicos
+from  models import Pacientes , Endereco_Paciente, Telefone_Paciente , Disponibilidade , Registra, Medicos, Consultas
 from sqlalchemy.orm.exc import NoResultFound
 from flask import request, render_template, url_for, redirect ,jsonify , session
 import  hashlib
@@ -82,7 +82,6 @@ def cadastro_cliente():
 
         except Exception as erro:
             bd.session.rollback()
-            print(erro)
             return jsonify({'erro': 'Algo saiu Errado por favor tente novamente!'})
 
 
@@ -150,18 +149,41 @@ def info_datas():
 
 
 
+@app.route('/agendar',methods = ['POST'])
+def agendar_consulta():
+
+    demanda =  request.get_json()
+
+    dados_consulta = bd.session.query(Medicos).join(Registra, Medicos.crm == Registra.crm_medico).join(Disponibilidade, Registra.id_disponibilidade == Disponibilidade.id_disponibilidade)\
+    .filter(Medicos.nome == demanda.get("nome"),Medicos.especialidade == demanda.get('especialidade'), Disponibilidade.data_disp == demanda.get('data'),
+            Disponibilidade.hora == demanda.get('hora'))\
+    .with_entities(
+
+        Medicos.crm,
+        Disponibilidade.id_disponibilidade
 
 
 
+    ).one()
+
+    crm_medico = dados_consulta.crm
+    id_disponibilidade = dados_consulta.id_disponibilidade
+    cpf_paciente = session['usuario']
+    data = demanda.get('data')
+    hora = demanda.get('hora')
+
+    try:
+        nova_consulta = Consultas(id_consulta = id_disponibilidade, crm_medico = crm_medico, cpf_paciente = cpf_paciente,
+                                  data_consulta = data , hora = hora)
+        bd.session.add(nova_consulta)
+        bd.session.commit()
+
+        return  jsonify({'operacao' : True})
+
+
+    except Exception as erro:
+        bd.session.rollback()
+        return jsonify({'operacao': False})
 
 
 
-
-
-
-
-
-
-
-
-    return 'oi'

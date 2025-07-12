@@ -116,3 +116,5 @@ CREATE TABLE consultas(
 )CHARSET = utf8mb4;
 use clinica;
 
+
+

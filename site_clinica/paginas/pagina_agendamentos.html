@@ -143,37 +143,48 @@
 
     <ul id="info_consulta">
 
-        <li><span class="descricao">Horário</span> <span>13:30</span></li>
-        <li><span class="descricao">Data</span> <span>10/09/25</span></li>
+        <li><span class="descricao">Horário</span> <span id="hora"></span></li>
+        <li><span class="descricao">Data</span> <span id="data"></span></li>
         <li><span class="descricao">Local</span> <span>aloisio mota 333</span></li>
-        <li><span class="descricao">Doutor(a)</span> <span>Jorjão buarque melo tudo</span></li>
-        <li><span class="descricao">Especialidade</span> <span>Ortospanedista</span></li>
+        <li><span class="descricao">Doutor(a)</span> <span id="nome_medico"></span></li>
+        <li><span class="descricao">Especialidade</span> <span id="especialidade_medico">Ortospanedista</span></li>
 
     </ul>
 
     <div id="botoes_finalizar">
 
-        <button>Voltar</button>
-        <button>Confirmar</button>
+        <button id="btn_voltar_tela4">Voltar</button>
+        <button id="confirma_consulta">Confirmar</button>
     </div>
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </section>
+
+    <dialog id="sucesso">
+        <main>
+            <div id="logo_status"></div>
+            <p class="msg">Agendamento Concluído!</p>
+
+                <button id="btn_confirma">Página inicial</button>
+                <button id="btn_confirma">Visualizar agendamentos</button>
+            
+        </main>
+        
+    </dialog>
+
+
+    <dialog id="excecao">
+        
+            <main>
+                <div></div>
+                <p>Algo saiu errado Por favor tente novamente.</p>
+                <div id="botoes_mod">
+                    <button id="confirma">Ok</button>
+                </div>
+            </main>
+        
+
+    </dialog>
 
  
 

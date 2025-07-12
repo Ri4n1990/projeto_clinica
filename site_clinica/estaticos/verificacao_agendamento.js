@@ -1,14 +1,26 @@
 let btn_confirma_tela_1 = document.getElementById('confirma')
 let btn_voltar_tela_2 = document.getElementById('btn_voltar')
 let btn_voltar_tela3 = document.getElementById('btn_voltar_tela3')
+let btn_voltar_tela4 = document.getElementById('btn_voltar_tela4')
 let btn_agendar = document.getElementById('btn_agendar')
+let confirma_consulta = document.getElementById('confirma_consulta')
+let btn_fecha_modal_erro = document.getElementById('confirma')
+let modal_ok = document.getElementById('sucesso')
+let modal_erro = document.getElementById('excecao')
+let btn_pagina_inicial = document.getElementById('btn_confirma')
 let disponiveis = [...document.getElementsByClassName('disponivel')]
+
+
 let tela_1 = document.getElementById('tela_1')
 let tela_2 = document.getElementById('tela_2')
 let tela_3 = document.getElementById('tela_3')
 let tela_4 = document.getElementById('tela_4')
 const meses = ['Janeiro','Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
+let hora = document.getElementById('hora')
+let data = document.getElementById('data')
+let nome_doutor = document.getElementById('nome_medico')
+let especialidade_medico = document.getElementById('especialidade_medico')
 
 let data_consulta = null
 let nome_medico = null
@@ -51,6 +63,11 @@ btn_voltar_tela3.addEventListener('click',()=>{
 })
 
 
+btn_voltar_tela4.addEventListener('click',()=>{
+
+    tela_4.style = 'display:none;'
+    tela_3.style = 'display:flex;'
+})
 
 btn_agendar.addEventListener('click',()=>{
 
@@ -64,14 +81,14 @@ btn_agendar.addEventListener('click',()=>{
         
     }
 
-    let mes = meses.indexOf(document.getElementById('mes').innerHTML) < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)}` : meses.indexOf(document.getElementById('mes').innerHTML)
+    let mes = meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1
 
-    data_consulta = `${document.getElementById('dia_selecionado').innerHTML}/${mes}/${document.getElementById('ano').innerHTML}`
+    data.innerHTML = `${document.getElementById('dia_selecionado').innerHTML}/${mes}/${document.getElementById('ano').innerHTML}`
+    hora.innerHTML = document.getElementById('horario_selecionado').innerHTML
+    especialidade_medico.innerHTML = document.getElementById('especialidade_medico').innerHTML
+    
+    nome_doutor.innerHTML = document.getElementById('horario_selecionado').parentElement.previousSibling.firstChild.innerHTML
 
-    horario = document.getElementById('horario_selecionado').innerHTML
-
-    especialidade = document.getElementById('especialidade_medico').innerHTML
-    nome_medico = document.getElementById('nome_profissional').innerHTML
 
     tela_3.style = 'display:none'
     tela_4.style = 'display:flex'
@@ -81,3 +98,40 @@ btn_agendar.addEventListener('click',()=>{
 
 })
 
+modal_ok.showModal()
+
+btn_fecha_modal_erro.addEventListener('click',()=>{
+
+    modal_erro.close()
+})
+
+
+btn_pagina_inicial.addEventListener('click',()=>{
+    window.location.href = '/'
+})
+confirma_consulta.addEventListener('click', async()=>{
+
+    let mes = meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1
+    
+    let dados = {
+        data :`${document.getElementById('ano').innerHTML}-${mes}-${document.getElementById('dia_selecionado').innerHTML}`,
+        hora : `${hora.innerHTML}:00`,
+        nome : nome_doutor.innerHTML,
+        especialidade : especialidade_medico.innerHTML
+
+    }
+
+    let cabecalho = {
+        method : 'POST',
+        headers : {'Content-Type' : 'application/json'},
+        body : JSON.stringify(dados)
+    }
+    
+    let endpoint = "http://127.0.0.1:8080/agendar"
+
+    fetch(endpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
+
+        resposta.operacao = true ?  modal_ok.showModal() : modal_erro.showModal()
+
+    })
+})

@@ -277,7 +277,5 @@ dialog#excecao>main>div:not(#botoes){
     
 }
 
-.erro_back_modal{
-    background-image: url('../estaticos/design/aviso.png');
 
-}
+
