@@ -106,7 +106,7 @@ def pagina_agendamentos():
 
         return render_template(pagina, titulo='Agendamentos', template=template_include, dados_paciente = dados_paciente)
 
-    return render_template(pagina, titulo='Agendamentos', template=template_include)
+    return render_template(pagina, titulo='Agendamentos', template=template_include,msg = 'Faça login para realizar um agendamento')
 
 
 @app.route('/disponibilidades',methods = ['POST'])
@@ -185,5 +185,50 @@ def agendar_consulta():
         bd.session.rollback()
         return jsonify({'operacao': False})
 
+
+@app.route('/consultas')
+def consultas():
+
+
+
+    include_template = 'template_logado.html' if 'usuario' in session else 'template_nao_logado.html'
+    pagina = 'pagina_consultas.html' if 'usuario' in session  else 'pagina_consultas_nao_logado.html'
+
+    if 'usuario' in session:
+
+        try:
+            consultas_paciente = bd.session.query(Consultas).join(Medicos, Consultas.crm_medico == Medicos.crm).filter(
+                Consultas.cpf_paciente == session['usuario']) \
+                .with_entities(
+                Medicos.nome,
+                Medicos.especialidade,
+                Consultas.data_consulta,
+                Consultas.hora,
+                Consultas.id_consulta
+            ).all()
+
+            return render_template(pagina,template=include_template, consultas_paciente = consultas_paciente)
+
+
+        except NoResultFound:
+            pass
+
+
+
+
+
+    return  render_template(pagina, msg = 'Faça login para visualizar os seus agendamentos', template = include_template)
+
+
+@app.route('/desmarcar_consulta/<string:id>', methods = ['POST'])
+def desmarcar_consulta(id):
+    try:
+        bd.session.query(Consultas).filter(Consultas.id_consulta == id).delete()
+        bd.session.commit()
+        return jsonify({'execucao':True})
+    except Exception as erro:
+        bd.session.rollback()
+        print(f'Erro ao executar a query! {erro}')
+        return jsonify({'execucao': False})
 
 

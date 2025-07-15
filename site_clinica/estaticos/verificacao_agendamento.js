@@ -98,7 +98,7 @@ btn_agendar.addEventListener('click',()=>{
 
 })
 
-modal_ok.showModal()
+
 
 btn_fecha_modal_erro.addEventListener('click',()=>{
 

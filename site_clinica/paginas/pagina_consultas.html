@@ -1,0 +1,95 @@
+{%include template%}
+
+{%block conteudo%}
+
+
+{% for consulta in consultas_paciente %}
+<section class="consulta">
+
+    <dl>
+        <div class="conteudo">
+            <dt>Profissional</dt>
+            <dd>{{consulta.nome}}</dd>
+        </div>
+
+        <div class="conteudo">
+            <dt>Especialidade</dt>
+            <dd>{{consulta.especialidade}}</dd>
+        </div>
+
+        <div class="conteudo_execao">
+            <dt>Data</dt>
+            <dd>{{consulta.data_consulta}}</dd>
+        </div>
+
+        <div class="conteudo_execao">
+            <dt>Horario</dt>
+            <dd>{{consulta.hora}}</dd>
+        </div>
+
+        <div class="conteudo">
+            <dt>Local</dt>
+            <dd>Av:Antônio nunes</dd>
+        </div>
+
+        
+        <div class="conteudo dias">
+            <section class="dias_restantes">exemplo</section>
+        </div>
+        
+
+    </dl>
+
+
+
+    <section id="botoes_consulta">
+        
+        <button class="desmarcar" >Desmarcar <i class="icone_desmarcar"></i></button>
+        <input type="hidden" name="id_disp" value= "{{consulta.id_consulta}}">
+        
+
+    </section>
+
+
+
+
+</section>
+
+
+<dialog id="modal_desmarcar">
+    <section >
+        <p>Tem certeza que deseja desmarcar essa consulta?</p>
+        <div>
+            <button id="voltar_desmarcar">Voltar</button>
+            <button id="confirma">Sim</button>
+        </div>
+    </section>
+
+</dialog>
+
+
+<dialog id="sucesso_desmarcar">
+    <main>
+        <div id="logo_status"></div>
+        <p class="msg">Cadastro concluido com sucesso!</p>
+        <button class="ok_modal">Ok</button>
+    </main>
+    
+</dialog>
+
+
+<dialog id="erro_desmarcar">
+    <main>
+        <div id="logo_status"></div>
+        <p class="msg">Erro ao tentar desmarcar Por favor tente novamente!</p>
+        <button class="ok_modal">Ok</button>
+    </main>
+    
+</dialog>
+{%endfor%}
+
+
+
+
+
+{%endblock%}

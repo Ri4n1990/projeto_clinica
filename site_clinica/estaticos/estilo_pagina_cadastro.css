@@ -189,12 +189,12 @@ div:not(#genero)>p{
     display: inline !important;
 }
 
-dialog{
+dialog#sucesso_desmarcar{
     width: 40vw;
     height: 30vh;
     margin: auto;
 }
-dialog>main{
+dialog#sucesso_desmarcar>main{
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-evenly;
@@ -206,12 +206,12 @@ dialog>main{
     border-radius: 5px;
 }
 
-dialog>main>p{
+dialog#sucesso_desmarcar>main>p{
     font-size: 1.2em;
     font-family: var(--fonte_padrao);
     
 }
-dialog>main>div:not(#botoes){
+dialog#sucesso_desmarcar>main>div:not(#botoes){
     
     width: 20%;
     height: 50%;
@@ -225,7 +225,7 @@ dialog>main>div:not(#botoes){
 
 
 
-dialog>main>button{
+dialog#sucesso_desmarcar>main>button{
     width: 30%;
     height: 15%;
     font-family: var(--fonte_secundaria);
@@ -239,7 +239,7 @@ dialog>main>button{
     cursor: pointer;
 }
 
-dialog>main>button:hover{
+dialog#sucesso_desmarcar>main>button:hover{
     background-color: var(--cor_principal);
 }
 
