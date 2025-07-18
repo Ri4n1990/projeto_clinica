@@ -258,3 +258,24 @@ dialog#erro_desmarcar>main>div:not(#botoes){
     background-image: url('../estaticos/design/aviso.png');
 
 }
+
+#msg_consultas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor_principal);
+    width: 50vw;
+    height: 20vh;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+
+#msg_consultas>p{
+    color: var(--cor_base);
+    font-size: 1.5em;
+    text-align: center;
+    font-family: var(--fonte_padrao);
+
+}

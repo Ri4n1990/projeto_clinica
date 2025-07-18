@@ -316,13 +316,16 @@ especialidades.map((e)=>{
         let consultas_disponoveis = [...document.getElementsByClassName('disponivel')]
        
         consultas_disponoveis.map((e)=>{
+            
             e.addEventListener('click',(evt)=>{
+                
                 
 
                 let dados = {
                     dia: e.innerHTML,
                     ano: document.getElementById('ano').innerHTML,
                     mes: meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1,
+                    especialidade : especialidade_escolhida
                     
 
                 }
@@ -342,7 +345,7 @@ especialidades.map((e)=>{
                     let chaves = Object.keys(resposta)
                     let valores = Object.values(resposta)
 
-                   
+                   console.log(resposta)
                     chaves.map((e,p)=>{
                         let div = document.createElement('div')
                         div.classList.add('informacoes')
@@ -420,6 +423,7 @@ seta_posterior.addEventListener('click', async ()=>{
                     dia: e.innerHTML,
                     ano: document.getElementById('ano').innerHTML,
                     mes: meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1,
+                    especialidade  : especialidade_escolhida
                     
 
                 }
@@ -535,6 +539,7 @@ seta_anterior.addEventListener('click', async()=>{
                     dia: e.innerHTML,
                     ano: document.getElementById('ano').innerHTML,
                     mes: meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1,
+                    especialidade  : especialidade_escolhida
                     
 
                 }

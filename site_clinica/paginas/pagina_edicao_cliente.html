@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>cadastro-paciente</title>
-    <link rel="stylesheet" href="../estaticos/estilo_pagina_cadastro.css">
+    <link rel="stylesheet" href="../estaticos/estilo_pagina_edicao.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
-    <script src="../estaticos/verificacao_cadastro.js" defer></script>
+    <script src="../estaticos/verificacao_edicao.js" defer></script>
 
 </head>
 <body>
@@ -32,32 +33,27 @@
 
         <div>
             <label for="nome_paciente">Nome completo</label>
-            <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" placeholder="EX: fulano firmino de siclano" class="verificacao" pattern="[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)*" required >
+            <input type="text" name="nome_paciente" id="nome_paciente" maxlength="85" placeholder="EX: fulano firmino de siclano" class="verificacao" pattern="[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)*" required  value="{{dados_paciente.nome}}">
             <p>Digíte um nome valido!</p>
         </div>
 
         <div>
             <label for="cpf_paciente">CPF</label>
-            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" placeholder="EX: 000.000.000.00" class="verificacao" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required>
+            <input type="text" name="cpf_paciente" id="cpf_paciente" minlength="14" maxlength="14" placeholder="EX: 000.000.000.00" class="verificacao" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" required value="{{dados_paciente.cpf}}">
             <p>Digíte um CPF Válido!</p>
         </div>
 
         <div>
             <label for="email_paciente">E-mail</label>
-            <input type='email' name="email_paciente" id="email_paciente"  maxlength="320" pattern="^\w{2,}@\w+\.\w+$" placeholder="EX: jorgin55@hotmail.com"class="verificacao"  required>
+            <input type='email' name="email_paciente" id="email_paciente"  maxlength="320" pattern="^\w{2,}@\w+\.\w+$" placeholder="EX: jorgin55@hotmail.com"class="verificacao"  required value="{{dados_paciente.email}}">
             <p>Digíte um e-mail valido!</p>
         </div>
 
-        <div>
-            <label for="senha_paciente">Senha de acesso</label>
-            <input type="text" name="senha_paciente" id="senha_paciente" minlength="8" maxlength="15" placeholder="********" class="verificacao" pattern="\w{8,}" required>
-            <p>Minímo de 8 caracteres!</p>
-            
-        </div>
+      
 
         <div id="tel_paciente">
-            <label for="telefone_paciente">Telefones para contato</label>
-            <input type="tel" name="telefone_paciente" id="telefone_paciente" maxlength="15" class="verificacao"  pattern="^\(\d{2}\)\d{5}-\d{4}$"   placeholder="EX: (DDD)90000-0000" required>
+            <label for="telefone_paciente">Telefone para contato</label>
+            <input type="tel" name="telefone_paciente" id="telefone_paciente" maxlength="15" class="verificacao"  pattern="^\(\d{2}\)\d{5}-\d{4}$"   placeholder="EX: (DDD)90000-0000" required value="{{telefone}}">
             <p>Digíte um telefone valido!</p>
             
         </div>
@@ -76,24 +72,24 @@
 
             <div>
                 <label for="cep_cliente">CEP</label>
-                <input type="text" name="cep_cliente" id="cep_cliente"  minlength="8" maxlength="8" placeholder="EX: 00000000" class="verificacao" pattern="\d{8}" required>
+                <input type="text" name="cep_cliente" id="cep_cliente"  minlength="8" maxlength="8" placeholder="EX: 00000000" class="verificacao" pattern="\d{8}" required value="{{endereco.cep}}">
                 <p>Digíte um CEP valido!</p>
             </div>
             <div>
                 <label for="bairro_cliente">Bairro</label>
-                <input type="text" name="bairro_cliente" id="bairro_cliente" class="verificacao" maxlength="30" pattern="\w+" required>
+                <input type="text" name="bairro_cliente" id="bairro_cliente" class="verificacao" maxlength="30" pattern="\w+" required value="{{endereco.bairro}}">
                 <p>Digíte um bairro valido!</p>
 
             </div>
             <div>
                 <label for="rua_paciente">Rua/Avenida</label>
-                <input type="text" name="rua_paciente" id="rua_paciente" maxlength="50" class="verificacao" pattern="[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)*" required>
+                <input type="text" name="rua_paciente" id="rua_paciente" maxlength="50" class="verificacao" pattern="[A-Za-zÀ-ÿ]+(?:\s+[A-Za-zÀ-ÿ]+)*" required value="{{endereco.rua}}">
                 <p>Digíte uma rua valida!</p>
             </div>
 
             <div>
                 <label for="numero_residencia">Número</label>
-                <input type="text" name="numero_residencia" id="numero_residencia" maxlength="4" class="verificacao" inputmode="numeric" required>
+                <input type="text" name="numero_residencia" id="numero_residencia" maxlength="4" class="verificacao" inputmode="numeric" required value="{{endereco.numero}}">
                 <p>Digíte um número valido!</p>
             </div>
 
@@ -104,14 +100,14 @@
             </div>
         </fieldset>
 
-        <button>Fazer Cadastro</button>
+        <button>Atualizar Dados</button>
 
     </form>
 
     <dialog id="sucesso">
         <main>
             <div id="logo_status"></div>
-            <p class="msg">Cadastro concluido com sucesso!</p>
+            <p class="msg">Atualização concluída com sucesso!</p>
             <button id="btn_confirma">Ok</button>
         </main>
         
@@ -122,9 +118,8 @@
         
             <main>
                 <div></div>
-                <p>O cpf informado já esta cadastrado!</p>
+                <p>erro ao tentar atualizar os dados por favor tente novamente</p>
                 <div id="botoes">
-                    <button id="login">Fazer login</button>
                     <button id="confirma">Ok</button>
                 </div>
             </main>

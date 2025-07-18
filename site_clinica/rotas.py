@@ -10,18 +10,19 @@ import  hashlib
 app.secret_key = 'Y2hhdmVfc2Vzc2lvbg=='
 
 
+
 @app.route('/')
 def pagina_inicial():
+
     if 'usuario' in session:
         try:
             dados = bd.session.query(Pacientes).filter(Pacientes.cpf == session['usuario']).one()
-            return f'Bem vindo {dados.nome}!'
+            return render_template('pagina_inicial.html', template = 'template_logado.html')
         except NoResultFound:
-            return f'Bem vindo'
+            return  render_template('pagina_inicial.html', template = 'template_nao_logado.html')
+    return render_template('pagina_inicial.html', template='template_nao_logado.html')
 
 
-
-    return 'Bem vindo!'
 
 
 @app.route('/pagina_login')
@@ -123,17 +124,18 @@ def disponibilidades_consulta():
 @app.route('/info_datas',methods = ['POST'])
 def info_datas():
     dados = request.get_json()
+    print(dados.get('especialidade'))
     data = f'{dados.get("ano")}-{dados.get("mes")}-{dados.get("dia")}'
+    print(data)
 
     disponibilidade = bd.session.query(Disponibilidade).filter(Disponibilidade.data_disp == f'{data}').join(
         Registra, Registra.id_disponibilidade == Disponibilidade.id_disponibilidade).join(Medicos,Registra.crm_medico == Medicos.crm) \
-        .with_entities(
+        .filter(Medicos.especialidade == dados.get('especialidade') ).with_entities(
 
         Medicos.nome,
         Disponibilidade.hora
 
     ).order_by(Disponibilidade.hora).all()
-
     resposta = {}
 
     for e in disponibilidade:
@@ -151,26 +153,33 @@ def info_datas():
 
 @app.route('/agendar',methods = ['POST'])
 def agendar_consulta():
-
-    demanda =  request.get_json()
-
-    dados_consulta = bd.session.query(Medicos).join(Registra, Medicos.crm == Registra.crm_medico).join(Disponibilidade, Registra.id_disponibilidade == Disponibilidade.id_disponibilidade)\
-    .filter(Medicos.nome == demanda.get("nome"),Medicos.especialidade == demanda.get('especialidade'), Disponibilidade.data_disp == demanda.get('data'),
-            Disponibilidade.hora == demanda.get('hora'))\
-    .with_entities(
-
-        Medicos.crm,
-        Disponibilidade.id_disponibilidade
+    try:
 
 
+        demanda =  request.get_json()
+        print(demanda.get('data'))
+        print(demanda.get('hora'))
 
-    ).one()
+        dados_consulta = bd.session.query(Medicos).join(Registra, Medicos.crm == Registra.crm_medico).join(Disponibilidade, Registra.id_disponibilidade == Disponibilidade.id_disponibilidade)\
+        .filter(Medicos.nome == demanda.get("nome"),Medicos.especialidade == demanda.get('especialidade'), Disponibilidade.data_disp == demanda.get('data'),
+                Disponibilidade.hora == demanda.get('hora'))\
+        .with_entities(
 
-    crm_medico = dados_consulta.crm
-    id_disponibilidade = dados_consulta.id_disponibilidade
-    cpf_paciente = session['usuario']
-    data = demanda.get('data')
-    hora = demanda.get('hora')
+            Medicos.crm,
+            Disponibilidade.id_disponibilidade
+
+
+
+        ).one()
+
+        crm_medico = dados_consulta.crm
+        id_disponibilidade = dados_consulta.id_disponibilidade
+        cpf_paciente = session['usuario']
+        data = demanda.get('data')
+        hora = demanda.get('hora')
+
+    except Exception as erro:
+        print(erro)
 
     try:
         nova_consulta = Consultas(id_consulta = id_disponibilidade, crm_medico = crm_medico, cpf_paciente = cpf_paciente,
@@ -191,6 +200,7 @@ def consultas():
 
 
 
+
     include_template = 'template_logado.html' if 'usuario' in session else 'template_nao_logado.html'
     pagina = 'pagina_consultas.html' if 'usuario' in session  else 'pagina_consultas_nao_logado.html'
 
@@ -207,11 +217,17 @@ def consultas():
                 Consultas.id_consulta
             ).all()
 
+            if consultas_paciente == []:
+                return render_template('sem_consultas.html', template=include_template, msg='Você não possui Consultas Agendadas')
+
+
             return render_template(pagina,template=include_template, consultas_paciente = consultas_paciente)
 
-
         except NoResultFound:
-            pass
+            print('bom')
+
+
+
 
 
 
@@ -232,3 +248,43 @@ def desmarcar_consulta(id):
         return jsonify({'execucao': False})
 
 
+@app.route('/pagina_edicao')
+def pagina_edicao():
+    if 'usuario' not in session:
+        return  redirect(url_for('pagina_inicial'))
+    dados_paciente = bd.session.query(Pacientes).filter(Pacientes.cpf == session['usuario']).one()
+    tel_paciente = bd.session.query(Telefone_Paciente).filter(Telefone_Paciente.cpf_paciente == session['usuario'] ).one()
+    endereco_paciente = bd.session.query(Endereco_Paciente).filter(Endereco_Paciente.cpf_paciente == session['usuario']).one()
+    return  render_template('pagina_edicao_cliente.html', dados_paciente = dados_paciente , endereco = endereco_paciente, telefone = tel_paciente.telefone)
+
+@app.route('/edicao_cliente',methods = ['POST'])
+def edicao_cliente():
+    try:
+        dados = request.get_json()
+        tel_paciente = bd.session.query(Telefone_Paciente).filter(
+            Telefone_Paciente.cpf_paciente == session['usuario']).one()
+        endereco_paciente = bd.session.query(Endereco_Paciente).filter(
+            Endereco_Paciente.cpf_paciente == session['usuario']).one()
+
+        dados_paciente = bd.session.query(Pacientes).filter(Pacientes.cpf == session['usuario']).one()
+        dados_paciente.nome = dados.get('nome')
+        dados_paciente.cpf = dados.get('cpf')
+        dados_paciente.email = dados.get('email')
+        dados_paciente.sexo = dados.get('sexo')
+        tel_paciente.telefone = dados.get('telefone')
+        endereco_paciente.cep = dados.get('cep')
+        endereco_paciente.rua = dados.get('rua')
+        endereco_paciente.bairro = dados.get('bairro')
+        endereco_paciente.numero = dados.get('numero')
+        endereco_paciente.complemento = dados.get('complemento')
+        bd.session.commit()
+        return  jsonify({'status' : True})
+    except Exception as erro:
+        print(f'erro ao executar query {erro}')
+        return jsonify({'erro': True})
+
+
+@app.route('/logout')
+def logout():
+    session.pop('usuario')
+    return  redirect(url_for('pagina_inicial'))

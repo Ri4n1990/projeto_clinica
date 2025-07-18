@@ -10,7 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../estaticos/estilo_pagina_agendamentos_nao_logado.css">
+    <link rel="stylesheet" href="../estaticos/estilo_pagina_inicial.css">
     <script src="../estaticos/calendario_agendamentos.js" defer></script>
+    <script src="../estaticos/interacao_pagina_inicial.js" defer></script>
 </head>
 <body>
 
@@ -30,10 +32,11 @@
     <menu>
         <a href="{{url_for('pagina_login')}}" id="login">Fazer Login</a>
         <ul>
-            <li>Especialidades</li>
-            <li>Agendamentos</li>
-            <li>Meus agendamentos</li>
-            <li>Dicas</li>
+            <li><a href="/">Início</a></li>
+            
+            <li><a href="/pagina_agendamentos">Agendamentos</a></li>
+            <li><a href="/consultas">Meus agendamentos</a></li>
+            
         </ul>
         <a href="{{url_for('pagina_cadastro')}}" id="cadastro">Fazer Cadastro</a>
         

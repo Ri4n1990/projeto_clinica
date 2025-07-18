@@ -40,7 +40,7 @@ class Telefone_Paciente(bd.Model):
     telefone = bd.Column(bd.String(14), nullable = False)
 
     def __str__(self):
-        return  f'cpf : {self.cpf} , telefone : {self.telefone}'
+        return  f'[ cpf : {self.cpf_paciente} , telefone : {self.telefone} ]'
 
 
 

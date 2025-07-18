@@ -11,6 +11,7 @@ let btn_pagina_inicial = document.getElementById('btn_confirma')
 let disponiveis = [...document.getElementsByClassName('disponivel')]
 
 
+
 let tela_1 = document.getElementById('tela_1')
 let tela_2 = document.getElementById('tela_2')
 let tela_3 = document.getElementById('tela_3')
@@ -109,29 +110,42 @@ btn_fecha_modal_erro.addEventListener('click',()=>{
 btn_pagina_inicial.addEventListener('click',()=>{
     window.location.href = '/'
 })
-confirma_consulta.addEventListener('click', async()=>{
+confirma_consulta.addEventListener('click', async () => {
 
-    let mes = meses.indexOf(document.getElementById('mes').innerHTML)+1 < 10 ? `0${meses.indexOf(document.getElementById('mes').innerHTML)+1}` : meses.indexOf(document.getElementById('mes').innerHTML)+1
-    
+    let mes = meses.indexOf(document.getElementById('mes').innerHTML) + 1;
+    mes = mes < 10 ? `0${mes}` : mes;
+  
     let dados = {
-        data :`${document.getElementById('ano').innerHTML}-${mes}-${document.getElementById('dia_selecionado').innerHTML}`,
-        hora : `${hora.innerHTML}:00`,
-        nome : nome_doutor.innerHTML,
-        especialidade : especialidade_medico.innerHTML
-
-    }
-
+      data: `${document.getElementById('ano').innerHTML}-${mes}-${document.getElementById('dia_selecionado').innerHTML}`,
+      hora: `${hora.innerHTML}:00`,
+      nome: nome_doutor.innerHTML,
+      especialidade: especialidade_medico.innerHTML,
+    };
+    console.log(dados)
+  
     let cabecalho = {
-        method : 'POST',
-        headers : {'Content-Type' : 'application/json'},
-        body : JSON.stringify(dados)
-    }
-    
-    let endpoint = "http://127.0.0.1:8080/agendar"
-
-    fetch(endpoint,cabecalho).then(resp => resp.json()).then(resposta =>{
-
-        resposta.operacao = true ?  modal_ok.showModal() : modal_erro.showModal()
-
-    })
-})
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dados),
+    };
+  
+    let endpoint = 'http://127.0.0.1:8080/agendar';
+  
+    fetch(endpoint, cabecalho)
+      .then((resp) => {
+        if (!resp.ok) throw new Error(`HTTP error! status: ${resp.status}`);
+        return resp.json();
+      })
+      .then((resposta) => {
+        if (resposta.operacao === true) {
+          modal_ok.showModal();
+        } else {
+          modal_erro.showModal();
+        }
+      })
+      .catch((erro) => {
+        console.error('Erro na requisição:', erro);
+        modal_erro.showModal();
+      });
+  });
+  

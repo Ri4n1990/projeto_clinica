@@ -1,0 +1,303 @@
+@charset "UTF-8";
+
+
+:root{
+    --cor_principal:#4F76C9;
+    --cor_secundaria:#91CDF5;
+    --cor_terciaria:#67DE7D;
+    --cor_base:#ffff;
+    --fonte_padrao: "Inter", sans-serif;
+    --fonte_secundaria: "Instrument Sans", sans-serif;
+}
+
+
+
+
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+
+body{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    
+}
+
+
+
+header{
+    display: flex;
+    width: 100vw;
+    background-color: #4F76C9;
+    justify-content: space-between;
+    height: 18vh;
+    
+    
+}
+
+
+header>img:not(#logo){
+    max-width: 15%;
+    height: 100%;
+    
+}
+
+
+
+
+#logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 5px;
+    width: 20%;
+    height: 80%;
+    align-self: center;
+    border-radius: 15px;
+}
+
+
+#logo>img{
+    width: 90%;
+    
+}
+
+form{
+    
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    width: 60vw;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+form>div{
+    width: 33%;
+    margin: 10px;
+}
+
+form>div:not(#genero){
+
+    display: flex;
+    flex-flow: column nowrap;
+
+}
+
+form>div>label{
+    margin-bottom: 2px;
+    font-family: var(--fonte_padrao);
+    font-weight: normal;
+
+}
+
+form>div>input{
+    outline: none;
+    height: 30px;
+    border: 2px solid var(--cor_secundaria);
+    border-radius: 5px;
+    padding: 1px;
+    font-size: 1em;
+    
+}
+
+
+#telefone_paciente_2{
+    margin-top: 10px;
+}
+
+#genero{
+    padding-left: 5px;
+    
+}
+
+#genero>p{
+    font-family: var(--fonte_padrao);
+}
+
+fieldset{
+    
+    font-size: 1em;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+
+fieldset>legend{
+    font-family: var(--fonte_padrao);
+    font-size: 1.3em;
+    padding: 10px;
+    
+}
+fieldset>div{
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 0 0 40%;
+    margin: 10px;
+}
+
+fieldset>div>label{
+    margin-bottom: 2px;
+}
+
+fieldset>div>input{
+    outline: none;
+    border: 2px solid var(--cor_secundaria);
+    border-radius: 5px;
+    height: 25px;
+}
+
+
+form>button{
+    width: 35%;
+    height: 40px;
+    background-color: var(--cor_principal);
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 15px;
+    color: white;
+    font-family: var(--fonte_secundaria);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.126);
+}
+
+form>button:hover{
+    background-color: var(--cor_secundaria);
+}
+
+div:not(#genero)>p{
+    font-family: var(--fonte_secundaria);
+    color: red;
+    margin-top: 2px;
+    display: none;
+}
+
+
+.campo_incorreto{
+    display: inline !important;
+}
+
+dialog#sucesso{
+    width: 40vw;
+    height: 30vh;
+    margin: auto;
+}
+dialog#sucesso>main{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-color: var(--cor_secundaria);
+    outline: none;
+    border-radius: 5px;
+}
+
+dialog#sucesso>main>p{
+    font-size: 1.2em;
+    font-family: var(--fonte_padrao);
+    
+}
+dialog#sucesso>main>div:not(#botoes){
+    
+    width: 20%;
+    height: 50%;
+    border-radius: 50%;
+    background-image: url('../estaticos/design/cadastro_concluido.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+}
+
+
+
+dialog#sucesso>main>button{
+    width: 30%;
+    height: 15%;
+    font-family: var(--fonte_secundaria);
+    font-size: 1.2em;
+    border: none;
+    outline: none;
+    border-radius: 10px ;
+    background-color: var(--cor_secundaria);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+dialog#sucesso>main>button:hover{
+    background-color: var(--cor_principal);
+}
+
+dialog#excecao{
+    margin: auto;
+    width: 40vw;
+    padding: 20px;
+    
+}
+
+dialog#excecao>main{
+    text-align: center;
+    
+}
+
+dialog#excecao>main>p{
+
+    font-size: 1.4em;
+    font-family: var(--fonte_padrao);
+
+
+}
+dialog#excecao>main>div#botoes{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    width: 50%;
+    height: 15%;
+    margin: auto;
+    margin-top: 20px;
+
+
+}
+
+#botoes>button{
+    width: 45%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    font-family: var(--fonte_secundaria);
+    font-weight: bold;
+    color: white;
+    background-color: var(--cor_secundaria);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#botoes>button:hover{
+    background-color: var(--cor_principal);
+}
+
+dialog#excecao>main>div:not(#botoes){
+    background-image: url('../estaticos/design/aviso.png');
+
+
+    
+}
+
+
+

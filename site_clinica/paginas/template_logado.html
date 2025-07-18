@@ -12,7 +12,9 @@
     <script  type="module"  src="../estaticos/calendario_agendamentos.js" defer></script>
     <script type="module" src="../estaticos/verificacao_agendamento.js" defer></script>
     <link rel="stylesheet" href="../estaticos/estilo_pagina_consultas.css">
+    <link rel="stylesheet" href="../estaticos/estilo_pagina_inicial.css">
     <script src="../estaticos/verificacao_consulta.js" defer></script>
+    <script src="../estaticos/interacao_pagina_inicial.js" defer></script>
 </head>
 <body>
 
@@ -31,13 +33,22 @@
 
     <menu>
         <ul>
-            <li>Especialidades</li>
-            <li>Agendamentos</li>
-            <li>Meus agendamentos</li>
-            <li>Dicas</li>
+            
+            <li><a href="/">Início</a></li>
+            <li><a href="/pagina_agendamentos">Agendamentos</a></li>
+            <li><a href="/consultas">Meus agendamentos</a></li>
+            
+            
         </ul>
 
         <div id="icone_usuario"></div>
+        <section id="menu_user" class="menu_user_visivel">
+            <ul>
+            <li><a href="{{url_for('logout')}}">Logout</a></li>
+            <li><a href="/pagina_edicao">Editar dados</a></li>
+            </ul>
+
+        </section>
         
     </menu>
 

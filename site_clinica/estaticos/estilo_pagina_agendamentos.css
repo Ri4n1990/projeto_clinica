@@ -88,13 +88,17 @@
 
 .dados>dl{
     margin-top: 15px;
+    
 }
 
 
 .dados>dl>dt{
 
     font-family: var(--fonte_secundaria);
-    font-size: 1.1em;
+    font-size: 1.3em;
+    margin-right: 70%;
+    margin-top: 10px;
+    color: black;
 }
 
 .dados>dl>dd{
@@ -105,6 +109,7 @@
     color: var(--cor_base);
     padding: 10px;
     border-radius: 20px;
+    width: 100%;
 }
 
 
@@ -129,6 +134,11 @@
    background-color: var(--cor_terciaria);
    color: white;
    cursor: pointer;
+}
+
+#botoes>button>a{
+    text-decoration: none;
+    color: var(--cor_base);
 }
 
 
@@ -631,8 +641,13 @@ td{
 
  dialog{
     width: 40vw;
-    height: 40vh;
-    margin: auto;
+
+    
+}
+
+a{
+    text-decoration: none;
+    color: var(--cor_base);
 }
 dialog>main{
     display: flex;
@@ -654,7 +669,7 @@ dialog>main>p{
 dialog>main>div:not(#botoes){
     
     width: 25%;
-    height: 44%;
+    height: 50%;
     border-radius: 50%;
     background-image: url('../estaticos/design/cadastro_concluido.png');
     background-repeat: no-repeat;

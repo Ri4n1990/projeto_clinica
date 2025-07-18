@@ -1,0 +1,345 @@
+@charset "UTF-8";
+
+
+:root{
+    --cor_principal:#4F76C9;    
+    --cor_secundaria:#91CDF5;
+    --cor_terciaria:#67DE7D;
+    --cor_base:#ffff;
+    --fonte_padrao: "Inter", sans-serif;
+    --fonte_secundaria: "Instrument Sans", sans-serif;
+}
+
+
+
+
+
+#introducao{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    
+    background-color: var(--cor_principal);
+    width: 50vw;
+    min-height: 50vh;
+    margin: auto;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+
+#introducao>img{
+    width: 51%;
+    height: 100%;
+    border-radius: 10px 0px 0px 10px;
+
+
+}
+
+#introducao>section{
+    
+    width: 50%;
+    padding: 20px;
+    height: 70%;
+    align-self: center;
+    text-align: justify;
+    color: var(--cor_base);
+    font-family: var(--fonte_padrao);
+    font-size: 1.2em;
+}
+
+#introducao>section>p{
+    margin-top: 10px;
+}
+
+#introducao>section>a{
+    width: 50%;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--cor_terciaria);
+    border: none;
+    padding: 13px;
+    display: block;
+    border-radius: 15px;
+    color: var(--cor_base);
+    font-family: var(--fonte_secundaria);
+    font-size: 1.2em;
+    margin: auto;
+    margin-top: 20px;
+    
+    cursor: pointer;
+}
+
+#introducao>section>a:hover{
+    background-color: var(--cor_secundaria);
+}
+
+
+#especialidades_clinica{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 20px;
+    width: 50vw;
+    min-height: 50vh;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+#especialidades_clinica>p{
+    font-family: var(--fonte_padrao);
+    margin-top: 20px;
+    font-size: 1.8em;
+    text-align: center;
+    height: 20px;
+    flex:  0 0 10%;
+}
+
+#descricoes{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    flex: 1 0 200px;
+    
+}
+
+#descricoes>section{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 50%;
+    background-color: var(--cor_principal);
+    max-height: 338px;
+    border-radius: 15px;
+    padding: 10px;
+    color: var(--cor_base);
+    font-size: 1.1em;
+    font-family: var(--fonte_padrao);
+    text-align: justify;
+    
+}
+
+#descricoes>section>a{
+    background-color: var(--cor_terciaria);
+    padding: 15px;
+    text-decoration: none;
+    color: var(--cor_base);
+    font-size: 1.1em;
+    font-family: var(--fonte_padrao);
+    border-radius: 10px;
+    width: 30%;
+    text-align: center;
+}
+
+
+#descricoes>section>a:hover{
+    background-color: var(--cor_secundaria);
+}
+
+#descricoes>dl{
+    flex: 0 0 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 29px;
+    color: var(--cor_base);
+    font-family: var(--fonte_padrao);
+
+
+
+}
+
+#descricoes>section>p{
+    
+    font-family: var(--fonte_padrao);
+    font-size: 1.2em;
+}
+#descricoes>dl>div{
+    background-color: var(--cor_principal);
+    width: 90%;
+    display: flex;
+    flex-flow: column nowrap;
+    border-radius: 10px;
+    padding: 10px;
+
+}
+
+#descricoes>dl>div>dt{
+    font-size: 1.4em;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+
+
+#descricoes>dl>div>dt>i{
+    
+    flex: 0 0 10%;
+    margin-right: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    cursor: pointer;
+    background-color: var(--cor_principal);
+    
+    
+}
+#descricoes>dl>div>dd{
+    font-size: 1.1em;
+    font-family: var(--fonte_secundaria);
+    text-align: justify;
+    padding: 10px;
+    border-top: 2px solid var(--cor_secundaria);
+    border-bottom: 2px solid var(--cor_secundaria);
+    border-radius: 10px;
+    margin-top: 5px;
+    
+    
+
+}
+
+.nao_visivel{
+    display:none;
+}
+
+.btn_seta{
+    background-image: url("../estaticos/design/seta_info.png");
+}
+
+.btn_seta_visivel{
+    background-image: url("../estaticos/design/seta_info_cima.png");
+
+}
+
+
+#sobre_nos{
+
+    display: flex;
+    flex-flow:  row nowrap;
+    align-items: center;
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+    margin-top: 40px;
+}
+
+#sobre_nos>div{
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 0 0 25%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+#sobre_nos>div>div{
+    width: 50%;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--cor_secundaria);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no repeat;
+}
+
+
+
+#img1{
+    background-image: url("design/sobre_nos_00.jpeg");
+}
+#img2{
+    background-image: url("design/sobre_nos_01.png");
+}
+#img3{
+    background-image: url("design/sobre_nos_02.jpg");
+}
+#img4{
+    background-image: url("design/sobre_nos_03.jpg");
+}
+#img5{
+    background-image: url("design/sobre_nos_04.jpg");
+}
+
+#sobre_nos>section{
+    height: 70%;
+    flex: 0 0 40%;
+    padding: 10px;
+    border: 2px solid var(--cor_secundaria);
+    border-radius: 10px;
+    border-left: none;
+}
+
+#sobre_nos>section>p{
+    font-size: 1em;
+    font-family: var(--fonte_padrao);
+    text-align: justify;
+    margin-top: 30px;
+}
+#sobre_nos>section>h1{
+    margin-top: 5px;
+    font-size: 1.5em;
+    font-family: var(--fonte_padrao);
+    text-align: center;
+
+    
+}
+
+footer{
+    width: 100vw;
+    height: 100px;
+    background-color: var(--cor_principal);
+    bottom: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+footer>p{
+    color: var(--cor_base);
+    font-size: 1.4em;
+    font-family: var(--fonte_padrao);
+}
+
+#whatsap{
+    background-color: #67DE7D;
+    border-radius: 50%;
+    background-image: url("design/logo_whatsap.png");
+    background-position: center center ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+
+}
+
+
+footer>div{
+    width: 10%;
+}
+footer>a{
+    background-position: center center ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    
+    
+}
+
+#rede1{
+    background-image: url("design/facebook.png");
+}
+
+#rede2{
+    background-image: url("design/instagram.png");
+    
+}
+

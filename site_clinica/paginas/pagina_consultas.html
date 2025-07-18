@@ -19,23 +19,22 @@
 
         <div class="conteudo_execao">
             <dt>Data</dt>
-            <dd>{{consulta.data_consulta}}</dd>
+            <dd>{{consulta.data_consulta.strftime("%d/%m/%Y")}}</dd>
         </div>
 
         <div class="conteudo_execao">
             <dt>Horario</dt>
-            <dd>{{consulta.hora}}</dd>
+            <dd>{{consulta.hora.strftime("%H:%M")}}</dd>
         </div>
 
         <div class="conteudo">
             <dt>Local</dt>
-            <dd>Av:Antônio nunes</dd>
+            <dd>Av. Cavalhada, 4611 - Conj. 112
+                Porto Alegre • RS </dd>
         </div>
 
         
-        <div class="conteudo dias">
-            <section class="dias_restantes">exemplo</section>
-        </div>
+        
         
 
     </dl>
@@ -71,7 +70,7 @@
 <dialog id="sucesso_desmarcar">
     <main>
         <div id="logo_status"></div>
-        <p class="msg">Cadastro concluido com sucesso!</p>
+        <p class="msg">Consulta Desmarcada com sucesso!</p>
         <button class="ok_modal">Ok</button>
     </main>
     

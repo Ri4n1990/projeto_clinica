@@ -1,15 +1,14 @@
 let  cpf_paciente = document.getElementById('cpf_paciente')
 let tel_paciente = document.getElementById('telefone_paciente')
 let nome_paciente = document.getElementById('nome_paciente')
-let campos_input = [...document.getElementsByClassName('verificacao')]
-let btn_cadastro = document.getElementsByTagName('button')[0]
+
+let btn_edicao = document.getElementsByTagName('button')[0]
 let cep_paciente = document.getElementById('cep_cliente')
 const formulario = document.getElementsByTagName('form')[0]
 const modal_sucesso = document.querySelector('#sucesso')
 const modal_excecao = document.querySelector('#excecao')
 let msg = document.getElementById('#msg')
 let btn_confirma = document.getElementById('btn_confirma')
-
 
 
 
@@ -77,7 +76,11 @@ nome_paciente.addEventListener('input',()=>{
 
 
 
-btn_cadastro.addEventListener('click',(evt)=>{
+btn_edicao.addEventListener('click',(evt)=>{
+    
+    let campos_input = [...document.getElementsByClassName('verificacao')]
+
+    
 
     evt.preventDefault()
 
@@ -96,12 +99,12 @@ btn_cadastro.addEventListener('click',(evt)=>{
 
 
 
-    if(verifica_form()){
+    if(verifica_form(campos_input) == true){
+        
         dados = {
             nome : document.getElementById('nome_paciente').value,
             cpf : document.getElementById('cpf_paciente').value,
             email : document.getElementById('email_paciente').value,
-            senha : document.getElementById('senha_paciente').value,
             telefone : document.getElementById('telefone_paciente').value,
             sexo : document.querySelector('input[name="sexo"]:checked').value,
             cep : document.getElementById('cep_cliente').value,
@@ -112,12 +115,12 @@ btn_cadastro.addEventListener('click',(evt)=>{
 
         }
 
-        const endpoint = 'http://127.0.0.1:8080/cadastro_cliente'
+        const endpoint = 'http://127.0.0.1:8080/edicao_cliente'
 
         const cabecalho = {
             method: 'POST',
             headers: {
-                "Content-Type": "application/json"  // Adiciona o cabeçalho correto
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(dados)
             
@@ -128,18 +131,15 @@ btn_cadastro.addEventListener('click',(evt)=>{
                 
                 modal_sucesso.showModal()
                 btn_confirma.addEventListener('click',()=>{
-                    window.location.href = '/pagina_login'
+                    window.location.href = '/'
                 })
                
-            }else if('existente' in retorno){
+            }else if('erro' in retorno){
                 
                 modal_excecao.showModal()
-                const btn_login = document.getElementById('login') 
+    
                 const btn_confirma = document.getElementById('confirma')
 
-                btn_login.addEventListener('click',()=>{
-                    window.location.href = '/pagina_login'
-                })
 
                 btn_confirma.addEventListener('click',()=>{
                     modal_excecao.close()
